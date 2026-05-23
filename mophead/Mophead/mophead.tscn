@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cfhxp00n8g2ud"]
+
+[ext_resource type="Texture2D" uid="uid://echbik2xdqal" path="res://Assets/Mophead/Mophead.png" id="1_siwno"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vye04"]
+size = Vector2(21, 44)
+
+[node name="Mophead" type="CharacterBody2D" unique_id=1274740527]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1881869106]
+texture = ExtResource("1_siwno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=322549091]
+position = Vector2(-0.5, -5)
+shape = SubResource("RectangleShape2D_vye04")

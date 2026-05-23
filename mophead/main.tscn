@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bvgt4f7jl52nq"]
+
+[ext_resource type="PackedScene" uid="uid://cfhxp00n8g2ud" path="res://Mophead/mophead.tscn" id="1_ig7tw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(631, 134)
+
+[node name="Node2D" type="Node2D" unique_id=1979549985]
+
+[node name="Mophead" parent="." unique_id=1274740527 instance=ExtResource("1_ig7tw")]
+position = Vector2(136, 402)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2003901884]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=724643279]
+position = Vector2(309, 583)
+shape = SubResource("RectangleShape2D_0xm2m")
