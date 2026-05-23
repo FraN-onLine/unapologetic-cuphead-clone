@@ -19,16 +19,35 @@ var is_dashing = false
 var dash_direction = Vector2.ZERO
 
 # =========================
-# SHOOTING
+# WEAPONS
 # =========================
 
-@export var bullet_scene: PackedScene
+@export var blue_bullet_scene: PackedScene
+@export var pink_bullet_scene: PackedScene
+
+enum WeaponType {
+	BLUE,
+	PINK
+}
+
+var current_weapon = WeaponType.BLUE
+
+var can_shoot = true
+var shoot_timer = 0.0
+
+# =========================
+# NODES
+# =========================
 
 @onready var sprite = $MopheadSprite
 @onready var shoot_point = $ShootPoint
 @onready var dash_timer = $DashTimer
 
-var facing = 1 # 1 = right, -1 = left
+# =========================
+# STATE
+# =========================
+
+var facing = 1
 
 
 func _physics_process(delta):
@@ -41,7 +60,7 @@ func _physics_process(delta):
 		velocity.y += GRAVITY * delta
 
 	# =========================
-	# DASHING
+	# DASH
 	# =========================
 
 	if is_dashing:
@@ -50,7 +69,7 @@ func _physics_process(delta):
 		return
 
 	# =========================
-	# HORIZONTAL MOVEMENT
+	# MOVE
 	# =========================
 
 	var dir = Input.get_axis("left", "right")
@@ -58,9 +77,7 @@ func _physics_process(delta):
 	if dir != 0:
 		velocity.x = dir * SPEED
 
-		# Face direction
 		facing = sign(dir)
-
 		sprite.scale.x = facing
 
 	else:
@@ -74,11 +91,10 @@ func _physics_process(delta):
 		velocity.y = JUMP_FORCE
 
 	# =========================
-	# SHOOT
+	# SHOOTING
 	# =========================
 
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
+	handle_shooting(delta)
 
 	# =========================
 	# DASH
@@ -87,49 +103,108 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("dash"):
 		start_dash()
 
+	# =========================
+	# SWITCH WEAPON
+	# =========================
+
+	if Input.is_action_just_pressed("switch"):
+		switch_weapon()
+
 	move_and_slide()
 
 
-func shoot():
+func handle_shooting(delta):
 
-	if bullet_scene == null:
-		return
+	if shoot_timer > 0:
+		shoot_timer -= delta
 
-	var aim = get_aim_direction()
+	if Input.is_action_pressed("shoot") and shoot_timer <= 0:
+		fire_weapon()
 
-	var bullet = bullet_scene.instantiate()
+
+func fire_weapon():
+
+	match current_weapon:
+
+		WeaponType.BLUE:
+			fire_blue()
+
+		WeaponType.PINK:
+			fire_pink()
+
+
+func fire_blue():
+
+	var bullet = blue_bullet_scene.instantiate()
+
 	get_tree().current_scene.add_child(bullet)
 
 	bullet.global_position = shoot_point.global_position
 
-	# send direction to bullet
-	bullet.direction = aim.normalized()
+	var aim = get_aim_direction()
 
-	# rotate player toward horizontal aim
+	bullet.direction = aim
+
+	# fire rate from bullet
+	shoot_timer = bullet.fire_rate
+
 	if aim.x != 0:
 		facing = sign(aim.x)
 		sprite.scale.x = facing
+
+
+func fire_pink():
+
+	var aim = get_aim_direction()
+
+	# spread angles
+	var spread_angles = [-10, 0, 10]
+
+	for angle_deg in spread_angles:
+
+		var bullet = pink_bullet_scene.instantiate()
+
+		get_tree().current_scene.add_child(bullet)
+
+		bullet.global_position = shoot_point.global_position
+
+		var dir = aim.rotated(deg_to_rad(angle_deg))
+
+		bullet.direction = dir.normalized()
+
+	shoot_timer = pink_bullet_scene.instantiate().fire_rate
+
+	if aim.x != 0:
+		facing = sign(aim.x)
+		sprite.scale.x = facing
+
+
+func switch_weapon():
+
+	if current_weapon == WeaponType.BLUE:
+		current_weapon = WeaponType.PINK
+	else:
+		current_weapon = WeaponType.BLUE
+
+	print("Current Weapon: ", current_weapon)
 
 
 func get_aim_direction() -> Vector2:
 
 	var aim = Vector2.ZERO
 
-	# Vertical
 	if Input.is_action_pressed("up"):
 		aim.y -= 1
 
 	if Input.is_action_pressed("down"):
 		aim.y += 1
 
-	# Horizontal
 	if Input.is_action_pressed("left"):
 		aim.x -= 1
 
 	if Input.is_action_pressed("right"):
 		aim.x += 1
 
-	# If no aiming keys, shoot where facing
 	if aim == Vector2.ZERO:
 		aim.x = facing
 
@@ -142,7 +217,6 @@ func start_dash():
 
 	var aim = get_aim_direction()
 
-	# If no input, dash where facing
 	if aim == Vector2.ZERO:
 		aim = Vector2(facing, 0)
 
