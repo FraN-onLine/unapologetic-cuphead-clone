@@ -26,6 +26,6 @@ shape = SubResource("RectangleShape2D_vye04")
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=449207392]
-zoom = Vector2(4, 4)
+zoom = Vector2(2, 2)
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

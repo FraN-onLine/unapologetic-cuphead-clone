@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cfhxp00n8g2ud" path="res://Mophead/mophead.tscn" id="1_ig7tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
-size = Vector2(631, 134)
+size = Vector2(1146.5, 134)
 
 [node name="Node2D" type="Node2D" unique_id=1979549985]
 
@@ -13,5 +13,12 @@ position = Vector2(136, 402)
 [node name="Area2D" type="StaticBody2D" parent="." unique_id=245920398]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=724643279]
-position = Vector2(309, 583)
+position = Vector2(566.75, 583)
 shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1647698197]
+offset_left = -6.0
+offset_top = 508.0
+offset_right = 1140.0
+offset_bottom = 608.0
+color = Color(0.38904327, 0.22559804, 0.070009105, 1)
