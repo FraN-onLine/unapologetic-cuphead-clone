@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://iukk87a0i6xf"]
+
+[ext_resource type="Script" uid="uid://la6qwo0fq6qu" path="res://Mophead/bluebullet.gd" id="1_tx0vs"]
+[ext_resource type="Texture2D" uid="uid://brkj5t4i6pl1n" path="res://Assets/Mophead/Mophead Pink Bullets.png" id="2_574wk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tx0vs"]
+size = Vector2(6, 6)
+
+[node name="Bluebullet" type="Area2D" unique_id=1787179229]
+script = ExtResource("1_tx0vs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1911730985]
+texture = ExtResource("2_574wk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1854925857]
+shape = SubResource("RectangleShape2D_tx0vs")

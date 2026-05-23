@@ -1,15 +1,26 @@
 [gd_scene format=3 uid="uid://cfhxp00n8g2ud"]
 
 [ext_resource type="Texture2D" uid="uid://echbik2xdqal" path="res://Assets/Mophead/Mophead.png" id="1_siwno"]
+[ext_resource type="Script" uid="uid://dk8n05uk1am2d" path="res://Mophead/mophead.gd" id="1_vye04"]
+[ext_resource type="PackedScene" uid="uid://iukk87a0i6xf" path="res://Mophead/bluebullet.tscn" id="2_sd5nd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vye04"]
 size = Vector2(21, 44)
 
 [node name="Mophead" type="CharacterBody2D" unique_id=1274740527]
+script = ExtResource("1_vye04")
+bullet_scene = ExtResource("2_sd5nd")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1881869106]
+[node name="MopheadSprite" type="Sprite2D" parent="." unique_id=1881869106]
 texture = ExtResource("1_siwno")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=322549091]
 position = Vector2(-0.5, -5)
 shape = SubResource("RectangleShape2D_vye04")
+
+[node name="ShootPoint" type="Marker2D" parent="." unique_id=499706575]
+
+[node name="DashTimer" type="Timer" parent="." unique_id=2055232609]
+one_shot = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
