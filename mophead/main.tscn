@@ -8,17 +8,21 @@ size = Vector2(1146.5, 134)
 [node name="Node2D" type="Node2D" unique_id=1979549985]
 
 [node name="Mophead" parent="." unique_id=1274740527 instance=ExtResource("1_ig7tw")]
-position = Vector2(136, 402)
+position = Vector2(96, 167)
 
 [node name="Area2D" type="StaticBody2D" parent="." unique_id=245920398]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=724643279]
-position = Vector2(566.75, 583)
+position = Vector2(561, 257)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1647698197]
-offset_left = -6.0
-offset_top = 508.0
-offset_right = 1140.0
-offset_bottom = 608.0
+offset_left = -10.0
+offset_top = 191.0
+offset_right = 1136.0
+offset_bottom = 291.0
 color = Color(0.38904327, 0.22559804, 0.070009105, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=813092202]
+position = Vector2(190, 114)
+zoom = Vector2(3, 3)
