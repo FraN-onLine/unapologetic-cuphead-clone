@@ -5,16 +5,37 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(1146.5, 134)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+size = Vector2(98.25, 490)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(98.25, 490)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(526.125, 145)
+
 [node name="Node2D" type="Node2D" unique_id=1979549985]
 
 [node name="Mophead" parent="." unique_id=1274740527 instance=ExtResource("1_ig7tw")]
 position = Vector2(96, 167)
 
-[node name="Area2D" type="StaticBody2D" parent="." unique_id=245920398]
+[node name="Walls" type="StaticBody2D" parent="." unique_id=245920398]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=724643279]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=724643279]
 position = Vector2(561, 257)
 shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" unique_id=579502993]
+position = Vector2(-51, 190)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls" unique_id=1660935333]
+position = Vector2(429, 187)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls" unique_id=1593252458]
+position = Vector2(216.9375, -73)
+shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1647698197]
 offset_left = -10.0
