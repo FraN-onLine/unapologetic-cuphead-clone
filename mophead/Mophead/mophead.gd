@@ -4,19 +4,21 @@ extends CharacterBody2D
 # MOVEMENT
 # =========================
 
-const SPEED = 260.0
-const JUMP_FORCE = -520.0
+const SPEED = 220.0
+const JUMP_FORCE = -500.0
 const GRAVITY = 1400.0
 
 # =========================
 # DASH
 # =========================
 
-const DASH_SPEED = 700.0
+const DASH_SPEED = 650.0
 const DASH_TIME = 0.18
+const DASH_COOLDOWN = 0.6
 
 var is_dashing = false
 var dash_direction = Vector2.ZERO
+var dash_cooldown_timer = 0.0
 
 # =========================
 # WEAPONS
@@ -32,7 +34,6 @@ enum WeaponType {
 
 var current_weapon = WeaponType.BLUE
 
-var can_shoot = true
 var shoot_timer = 0.0
 
 # =========================
@@ -53,6 +54,16 @@ var facing = 1
 func _physics_process(delta):
 
 	# =========================
+	# TIMERS
+	# =========================
+
+	if shoot_timer > 0:
+		shoot_timer -= delta
+
+	if dash_cooldown_timer > 0:
+		dash_cooldown_timer -= delta
+
+	# =========================
 	# GRAVITY
 	# =========================
 
@@ -60,7 +71,7 @@ func _physics_process(delta):
 		velocity.y += GRAVITY * delta
 
 	# =========================
-	# DASH
+	# DASHING
 	# =========================
 
 	if is_dashing:
@@ -75,12 +86,15 @@ func _physics_process(delta):
 	var dir = Input.get_axis("left", "right")
 
 	if dir != 0:
+
 		velocity.x = dir * SPEED
 
 		facing = sign(dir)
+
 		sprite.scale.x = facing
 
 	else:
+
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	# =========================
@@ -94,13 +108,13 @@ func _physics_process(delta):
 	# SHOOTING
 	# =========================
 
-	handle_shooting(delta)
+	handle_shooting()
 
 	# =========================
 	# DASH
 	# =========================
 
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and dash_cooldown_timer <= 0:
 		start_dash()
 
 	# =========================
@@ -113,10 +127,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func handle_shooting(delta):
-
-	if shoot_timer > 0:
-		shoot_timer -= delta
+func handle_shooting():
 
 	if Input.is_action_pressed("shoot") and shoot_timer <= 0:
 		fire_weapon()
@@ -143,11 +154,11 @@ func fire_blue():
 
 	var aim = get_aim_direction()
 
-	bullet.direction = aim
+	bullet.direction = aim.normalized()
 
-	# fire rate from bullet
 	shoot_timer = bullet.fire_rate
 
+	# face toward horizontal aim
 	if aim.x != 0:
 		facing = sign(aim.x)
 		sprite.scale.x = facing
@@ -157,7 +168,6 @@ func fire_pink():
 
 	var aim = get_aim_direction()
 
-	# spread angles
 	var spread_angles = [-10, 0, 10]
 
 	for angle_deg in spread_angles:
@@ -172,8 +182,12 @@ func fire_pink():
 
 		bullet.direction = dir.normalized()
 
-	shoot_timer = pink_bullet_scene.instantiate().fire_rate
+	# get firerate from temporary bullet
+	var temp_bullet = pink_bullet_scene.instantiate()
+	shoot_timer = temp_bullet.fire_rate
+	temp_bullet.queue_free()
 
+	# face toward horizontal aim
 	if aim.x != 0:
 		facing = sign(aim.x)
 		sprite.scale.x = facing
@@ -193,17 +207,29 @@ func get_aim_direction() -> Vector2:
 
 	var aim = Vector2.ZERO
 
+	# =========================
+	# VERTICAL
+	# =========================
+
 	if Input.is_action_pressed("up"):
 		aim.y -= 1
 
 	if Input.is_action_pressed("down"):
 		aim.y += 1
 
+	# =========================
+	# HORIZONTAL
+	# =========================
+
 	if Input.is_action_pressed("left"):
 		aim.x -= 1
 
 	if Input.is_action_pressed("right"):
 		aim.x += 1
+
+	# =========================
+	# DEFAULT TO FACING
+	# =========================
 
 	if aim == Vector2.ZERO:
 		aim.x = facing
@@ -217,13 +243,29 @@ func start_dash():
 
 	var aim = get_aim_direction()
 
+	# =========================
+	# NO UPWARD DASHES
+	# =========================
+
+	# straight up
+	if aim.y < 0 and aim.x == 0:
+		aim = Vector2(facing, 0)
+
+	# upper diagonals become horizontal
+	if aim.y < 0 and aim.x != 0:
+		aim = Vector2(sign(aim.x), 0)
+
+	# fallback
 	if aim == Vector2.ZERO:
 		aim = Vector2(facing, 0)
 
 	dash_direction = aim.normalized()
 
+	dash_cooldown_timer = DASH_COOLDOWN
+
 	dash_timer.start(DASH_TIME)
 
 
 func _on_dash_timer_timeout():
+
 	is_dashing = false
