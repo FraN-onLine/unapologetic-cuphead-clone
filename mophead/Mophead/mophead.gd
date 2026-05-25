@@ -1,28 +1,16 @@
 extends CharacterBody2D
 
-# =========================
-# MOVEMENT
-# =========================
-
 const SPEED = 220.0
 const JUMP_FORCE = -500.0
 const GRAVITY = 1400.0
-
-# =========================
-# DASH
-# =========================
-
 const DASH_SPEED = 650.0
 const DASH_TIME = 0.18
 const DASH_COOLDOWN = 0.6
 
+var HP = 3
 var is_dashing = false
 var dash_direction = Vector2.ZERO
 var dash_cooldown_timer = 0.0
-
-# =========================
-# WEAPONS
-# =========================
 
 @export var blue_bullet_scene: PackedScene
 @export var pink_bullet_scene: PackedScene
@@ -36,52 +24,30 @@ var current_weapon = WeaponType.BLUE
 
 var shoot_timer = 0.0
 
-# =========================
-# NODES
-# =========================
 
 @onready var sprite = $MopheadSprite
 @onready var shoot_point = $ShootPoint
 @onready var dash_timer = $DashTimer
 
-# =========================
-# STATE
-# =========================
-
-var facing = 1
+var facing = 1 #1 ifacing right, -1 if facing left
 
 
 func _physics_process(delta):
 
-	# =========================
-	# TIMERS
-	# =========================
-
+	#timers
 	if shoot_timer > 0:
 		shoot_timer -= delta
 
 	if dash_cooldown_timer > 0:
 		dash_cooldown_timer -= delta
 
-	# =========================
-	# GRAVITY
-	# =========================
-
 	if not is_on_floor() and not is_dashing:
 		velocity.y += GRAVITY * delta
-
-	# =========================
-	# DASHING
-	# =========================
 
 	if is_dashing:
 		velocity = dash_direction * DASH_SPEED
 		move_and_slide()
 		return
-
-	# =========================
-	# MOVE
-	# =========================
 
 	var dir = Input.get_axis("left", "right")
 
@@ -97,29 +63,14 @@ func _physics_process(delta):
 
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# =========================
-	# JUMP
-	# =========================
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_FORCE
 
-	# =========================
-	# SHOOTING
-	# =========================
-
 	handle_shooting()
-
-	# =========================
-	# DASH
-	# =========================
 
 	if Input.is_action_just_pressed("dash") and dash_cooldown_timer <= 0:
 		start_dash()
-
-	# =========================
-	# SWITCH WEAPON
-	# =========================
 
 	if Input.is_action_just_pressed("switch"):
 		switch_weapon()
@@ -207,19 +158,11 @@ func get_aim_direction() -> Vector2:
 
 	var aim = Vector2.ZERO
 
-	# =========================
-	# VERTICAL
-	# =========================
-
 	if Input.is_action_pressed("up"):
 		aim.y -= 1
 
 	if Input.is_action_pressed("down"):
 		aim.y += 1
-
-	# =========================
-	# HORIZONTAL
-	# =========================
 
 	if Input.is_action_pressed("left"):
 		aim.x -= 1
@@ -227,9 +170,6 @@ func get_aim_direction() -> Vector2:
 	if Input.is_action_pressed("right"):
 		aim.x += 1
 
-	# =========================
-	# DEFAULT TO FACING
-	# =========================
 
 	if aim == Vector2.ZERO:
 		aim.x = facing
@@ -242,10 +182,6 @@ func start_dash():
 	is_dashing = true
 
 	var aim = get_aim_direction()
-
-	# =========================
-	# NO UPWARD DASHES
-	# =========================
 
 	# straight up
 	if aim.y < 0 and aim.x == 0:
@@ -269,3 +205,17 @@ func start_dash():
 func _on_dash_timer_timeout():
 
 	is_dashing = false
+
+func take_hit():
+
+	HP -= 1
+
+	print("HP: ", HP)
+
+	if HP <= 0:
+		die()
+
+func die():
+
+	print("Mophead has died!")
+	# You can add death animation or respawn logic here
