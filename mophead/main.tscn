@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cfhxp00n8g2ud" path="res://Mophead/mophead.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://o3g8uvvfn8u7" path="res://Assets/Map/Map.png" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c7po2brcg73ge" path="res://Assets/SexyBucket/Mop-Sheet.png" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://j4agpmkemdsi" path="res://Assets/SexyBucket/SB-Sheet.png" id="5_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(1146.5, 134)
@@ -157,6 +158,56 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(0, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w48qg"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(156, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vivmo"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(312, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(468, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaehf"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(624, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_074og"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(780, 0, 156, 131)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cegan"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycdy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w48qg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vivmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cqfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaehf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_074og")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="Stage" type="Node2D" unique_id=1979549985]
 script = ExtResource("1_h2yge")
 
@@ -210,4 +261,11 @@ text = "HP: 3"
 position = Vector2(117, 128)
 sprite_frames = SubResource("SpriteFrames_ycdy4")
 autoplay = "default"
-frame_progress = 0.9627125
+frame_progress = 0.19602554
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=833533235]
+position = Vector2(255, 101)
+scale = Vector2(1.8846154, 1.9122137)
+sprite_frames = SubResource("SpriteFrames_cegan")
+autoplay = "default"
+frame_progress = 0.028475026
