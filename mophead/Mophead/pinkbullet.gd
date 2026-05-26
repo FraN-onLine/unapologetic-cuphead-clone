@@ -2,7 +2,7 @@ extends Area2D
 
 var direction = Vector2.RIGHT
 
-const SPEED = 550.0
+const SPEED = 650.0
 const DAMAGE = 1
 
 const fire_rate = 0.28

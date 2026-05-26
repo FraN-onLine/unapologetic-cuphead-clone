@@ -30,7 +30,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vye04"]
 size = Vector2(21, 44)
 
-[node name="Mophead" type="CharacterBody2D" unique_id=1274740527]
+[node name="Mophead" type="CharacterBody2D" unique_id=1274740527 groups=["player"]]
 script = ExtResource("1_vye04")
 blue_bullet_scene = ExtResource("2_sd5nd")
 pink_bullet_scene = ExtResource("3_0a4a8")

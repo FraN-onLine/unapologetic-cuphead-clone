@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tx0vs"]
 size = Vector2(6, 6)
 
-[node name="Pinkbullet" type="Area2D" unique_id=1787179229]
+[node name="Pinkbullet" type="Area2D" unique_id=1787179229 groups=["bullet"]]
 script = ExtResource("1_wolvc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1911730985]
