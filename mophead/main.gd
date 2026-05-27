@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var dead = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -8,4 +8,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$CanvasLayer/HPLabel.text = "HP: " + str($Mophead.HP)
+	if not dead:
+		if $Mophead.HP > 0:
+			$CanvasLayer/HPLabel.text = "HP: " + str($Mophead.HP)
+		else:
+			$CanvasLayer/HPLabel.text = "HP: " + str($Mophead.HP)
+			$Mophead.queue_free()
+			dead = true
