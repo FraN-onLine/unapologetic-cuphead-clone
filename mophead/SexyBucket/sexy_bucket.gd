@@ -20,9 +20,6 @@ var current_attack = -1
 #timer
 @onready var attack_cooldown_timer = $AttackCooldownTimer
 
-# =====================================
-# READY
-# =====================================
 
 func _ready():
 
@@ -112,7 +109,6 @@ func phase_1_attack_selection():
 	var attacks = [
 		attack_phase1_a,
 		attack_phase1_b,
-		attack_phase1_c
 	]
 
 	current_attack = randi() % attacks.size()
@@ -147,6 +143,10 @@ func phase_3_attack_selection():
 func attack_phase1_a():
 
 	$SBSprite.play("stomp_phase1")
+	await wait_for_frame($SBSprite, 6)
+	$StompArea.monitoring = true
+	await wait_for_frame($SBSprite, 8)
+	$StompArea.monitoring = false
 	await $SBSprite.animation_finished
 	$SBSprite.play("idle_phase1")
 	attack_finished()
@@ -155,15 +155,10 @@ func attack_phase1_b():
 
 	$SBSprite.play("mop_phase1")
 	await $SBSprite.animation_finished
+	get_parent().drop_mop()
 	$SBSprite.play("idle_phase1")
 	attack_finished()
 
-
-func attack_phase1_c():
-
-	print("Phase 1 - Attack C")
-
-	attack_finished()
 
 func attack_phase2_a():
 
@@ -233,4 +228,15 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		body.take_hit(global_position)
+
+func wait_for_frame(sprite: AnimatedSprite2D, target_frame: int):
+
+	while sprite.frame != target_frame:
+		await get_tree().process_frame
+
+
+func _on_stomp_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+
 		body.take_hit(global_position)

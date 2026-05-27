@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c7po2brcg73ge" path="res://Assets/SexyBucket/Mop-Sheet.png" id="4_1bvp3"]
 [ext_resource type="FontFile" uid="uid://bhsapkumh7myh" path="res://Assets/fusion-pixel-12px-monospaced-kr-latin-400-normal.ttf" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://doajm5a5403xt" path="res://SexyBucket/sexy_bucket.tscn" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://dck4ir1ff5q3h" path="res://Assets/UI/WeaponBox.png" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://n0ubyrkf8u1t" path="res://Assets/Mophead/Mophead Blue Bullets.png" id="8_kek77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(1146.5, 134)
@@ -155,10 +157,13 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 7.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(112, 104)
 
 [node name="Stage" type="Node2D" unique_id=1979549985]
 script = ExtResource("1_h2yge")
@@ -206,11 +211,11 @@ tile_map_data = PackedByteArray("AAD//wwAAAAAAAYAAAD//w0AAAAAAAcAAAAAAAwAAAABAAY
 tile_set = SubResource("TileSet_1bvp3")
 
 [node name="Mop" type="AnimatedSprite2D" parent="." unique_id=1097893825]
-visible = false
+z_index = 1
 position = Vector2(117, 128)
 sprite_frames = SubResource("SpriteFrames_ycdy4")
-autoplay = "default"
-frame_progress = 0.110986196
+frame = 9
+frame_progress = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1780173559]
 
@@ -224,5 +229,53 @@ theme_override_fonts/font = ExtResource("4_7mycd")
 theme_override_font_sizes/font_size = 50
 text = "HP: 3"
 
+[node name="Instructions" type="Label" parent="CanvasLayer" unique_id=662500498]
+offset_left = 80.0
+offset_top = 547.0
+offset_right = 306.0
+offset_bottom = 573.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_7mycd")
+theme_override_font_sizes/font_size = 25
+text = "Press \"S\" to Swap"
+
+[node name="Instructions2" type="Label" parent="CanvasLayer" unique_id=432510038]
+offset_left = 24.0
+offset_top = 439.0
+offset_right = 288.0
+offset_bottom = 535.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_7mycd")
+theme_override_font_sizes/font_size = 25
+text = "Press \"X\" to Shoot
+Press \"Z\" to Dash
+Press \"Space\" to Jump"
+
+[node name="Weapon" type="TextureRect" parent="CanvasLayer" unique_id=1954296575]
+visible = false
+z_index = 1
+offset_left = 21.0
+offset_top = 542.0
+offset_right = 61.0
+offset_bottom = 582.0
+texture = ExtResource("8_kek77")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1031051369]
+offset_left = 9.0
+offset_top = 531.0
+offset_right = 41.0
+offset_bottom = 563.0
+scale = Vector2(2, 2)
+texture = ExtResource("8_5vw27")
+
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1742025734]
 position = Vector2(307, 178)
+
+[node name="MopArea" type="Area2D" parent="." unique_id=1219703361]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MopArea" unique_id=1233505660]
+position = Vector2(88, 161)
+shape = SubResource("RectangleShape2D_272bh")
+
+[connection signal="body_entered" from="MopArea" to="." method="_on_mop_area_body_entered"]

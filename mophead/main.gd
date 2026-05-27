@@ -31,3 +31,28 @@ func spawn_pony():
 	add_child(pp)
 
 	pp.global_position = $Marker2D.position
+
+func drop_mop():
+	$Mop.play("default")
+	await wait_for_frame($Mop, 5)
+	$MopArea.monitoring = true
+	await wait_for_frame($Mop, 7)
+	$MopArea.monitoring = false
+	
+func _on_mop_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+
+		body.take_hit($MopArea.global_position)
+
+		print("Mop hit Mophead")
+
+func wait_for_frame(sprite: AnimatedSprite2D, target_frame: int):
+
+	while sprite.frame != target_frame:
+		await get_tree().process_frame
+
+func switch_weapon(type):
+	if type == "blue":
+		$CanvasLayer/Weapon.texture = load("res://Assets/Mophead/Mophead Blue Bullets.png")
+	else:
+		$CanvasLayer/Weapon.texture = load("res://Assets/Mophead/Mophead Pink Bullets.png")

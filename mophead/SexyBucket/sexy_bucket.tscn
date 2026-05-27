@@ -248,6 +248,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrios"]
 size = Vector2(117, 144)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrq48"]
+size = Vector2(256, 41)
+
 [node name="SexyBucket" type="Node2D" unique_id=768804504]
 script = ExtResource("1_mrios")
 
@@ -255,10 +258,10 @@ script = ExtResource("1_mrios")
 position = Vector2(-1.0000076, -1.0000019)
 scale = Vector2(2.0384617, 2.0877862)
 sprite_frames = SubResource("SpriteFrames_xfq8q")
-animation = &"mop_phase1"
+animation = &"stomp_phase1"
 autoplay = "idle_phase1"
-frame = 10
-frame_progress = 1.0
+frame = 7
+frame_progress = 0.44409102
 
 [node name="AttackCooldownTimer" type="Timer" parent="." unique_id=254762696]
 wait_time = 1.5
@@ -270,6 +273,14 @@ one_shot = true
 position = Vector2(56, 32)
 shape = SubResource("RectangleShape2D_mrios")
 
+[node name="StompArea" type="Area2D" parent="." unique_id=910464255]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea" unique_id=1451857556]
+position = Vector2(22, 97.5)
+shape = SubResource("RectangleShape2D_hrq48")
+
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="StompArea" to="." method="_on_stomp_area_body_entered"]

@@ -181,10 +181,11 @@ func switch_weapon():
 
 	if current_weapon == WeaponType.BLUE:
 		current_weapon = WeaponType.PINK
+		get_parent().switch_weapon("pink")
 
 	else:
 		current_weapon = WeaponType.BLUE
-
+		get_parent().switch_weapon("blue")
 	print("Current Weapon: ", current_weapon)
 
 
