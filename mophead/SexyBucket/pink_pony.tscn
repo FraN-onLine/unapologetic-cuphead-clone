@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c01e18wgx480p"]
+
+[ext_resource type="Script" uid="uid://cbjk1a4ud2pu1" path="res://SexyBucket/pink_pony.gd" id="1_akvkv"]
+[ext_resource type="Texture2D" uid="uid://doylkv7tewlo7" path="res://Assets/SexyBucket/Pink Pony-Sheet.png" id="2_4d3bu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4edxs"]
+atlas = ExtResource("2_4d3bu")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3dn7"]
+atlas = ExtResource("2_4d3bu")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kv45s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4edxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3dn7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heug8"]
+size = Vector2(36, 35)
+
+[node name="PinkPony" type="Area2D" unique_id=965689991]
+script = ExtResource("1_akvkv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1518330726]
+sprite_frames = SubResource("SpriteFrames_kv45s")
+autoplay = "default"
+frame_progress = 0.41488397
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1225562091]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_heug8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1336454931]
+position = Vector2(-498, 182)
+rect = Rect2(490, -189, 16, 14)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

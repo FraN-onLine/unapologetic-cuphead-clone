@@ -250,9 +250,9 @@ func take_hit(source_position: Vector2):
 
 	HP -= 1
 	
-	sprite.modulate(Color(1, 0.5, 0.5)) # briefly tint red on hit
+	sprite.modulate = Color(1, 0.5, 0.5) # briefly tint red on hit
 	await get_tree().create_timer(0.1).timeout
-	sprite.modulate(Color(1, 1, 1)) # reset tint
+	sprite.modulate = Color(1, 1, 1) # reset tint
 
 	print("HP: ", HP)
 

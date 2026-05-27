@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dml2quk5t4gi8" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cfhxp00n8g2ud" path="res://Mophead/mophead.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://o3g8uvvfn8u7" path="res://Assets/Map/Map.png" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c01e18wgx480p" path="res://SexyBucket/pink_pony.tscn" id="2_272bh"]
 [ext_resource type="Texture2D" uid="uid://c7po2brcg73ge" path="res://Assets/SexyBucket/Mop-Sheet.png" id="4_1bvp3"]
 [ext_resource type="FontFile" uid="uid://bhsapkumh7myh" path="res://Assets/fusion-pixel-12px-monospaced-kr-latin-400-normal.ttf" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://doajm5a5403xt" path="res://SexyBucket/sexy_bucket.tscn" id="6_7mycd"]
@@ -161,9 +162,13 @@ animations = [{
 
 [node name="Stage" type="Node2D" unique_id=1979549985]
 script = ExtResource("1_h2yge")
+PinkPony = ExtResource("2_272bh")
 
 [node name="Mophead" parent="." unique_id=1274740527 instance=ExtResource("1_ig7tw")]
 position = Vector2(96, 167)
+
+[node name="SexyBucket" parent="." unique_id=768804504 instance=ExtResource("6_7mycd")]
+position = Vector2(258, 97)
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=245920398]
 
@@ -219,5 +224,5 @@ theme_override_fonts/font = ExtResource("4_7mycd")
 theme_override_font_sizes/font_size = 50
 text = "HP: 3"
 
-[node name="SexyBucket" parent="." unique_id=768804504 instance=ExtResource("6_7mycd")]
-position = Vector2(258, 97)
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1742025734]
+position = Vector2(307, 178)
