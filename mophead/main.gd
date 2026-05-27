@@ -3,7 +3,8 @@ extends Node2D
 var dead = false
 @export var PinkPony: PackedScene
 var hazardscd = 0
-# Called when the node enters the scene tree for the first time.
+var instructions_on = true
+var timer_ins = 0
 func _ready() -> void:
 	pass # Replace with function body.
 
@@ -11,6 +12,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	hazardscd -= delta
+	if instructions_on:
+		timer_ins += delta
+		if timer_ins > 5:
+			instructions_on = false
+			$CanvasLayer/Instructions.visible = false
+			$CanvasLayer/Instructions2.visible = false
 	if not dead:
 		if $Mophead.HP > 0:
 			$CanvasLayer/HPLabel.text = "HP: " + str($Mophead.HP)

@@ -252,7 +252,6 @@ Press \"Z\" to Dash
 Press \"Space\" to Jump"
 
 [node name="Weapon" type="TextureRect" parent="CanvasLayer" unique_id=1954296575]
-visible = false
 z_index = 1
 offset_left = 21.0
 offset_top = 542.0
