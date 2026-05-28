@@ -40,8 +40,10 @@ func take_damage(amount: int):
 	if take_no_damage:
 		return
 	$SBSprite.modulate = Color(1, 1, 1, 0.8)
+	$SFSprite.modulate = Color(1, 1, 1, 0.8)
 	await get_tree().create_timer(0.1).timeout
 	$SBSprite.modulate = Color(1, 1, 1, 1)
+	$SFSprite.modulate = Color(1, 1, 1, 1)
 	hp -= amount
 
 	hp = clamp(hp, 0, MAX_HP)
@@ -82,6 +84,16 @@ func on_phase_changed():
 			print("Entered Phase 2")
 			take_no_damage = true
 			$SBSprite.play("exit_phase1")
+			await $SBSprite.animation_finished
+			$Hitbox1.monitoring = false
+			$Hitbox2.monitoring = true
+			$SBSprite.visible = false
+			$SFSprite.visible = true
+			$SFSprite.play("enter_phase2")
+			await $SFSprite.animation_finished
+			take_no_damage = false
+			$SFSprite.play("idle_phase2")
+			
 
 		BossPhase.PHASE_3:
 			print("Entered Phase 3")
@@ -100,7 +112,11 @@ func start_attack_cycle():
 
 
 func select_attack():
-
+	if take_no_damage:
+		is_attacking = false
+		attack_cooldown_timer.start()
+		return
+		
 	match current_phase:
 
 		BossPhase.PHASE_1:
@@ -130,7 +146,6 @@ func phase_2_attack_selection():
 	var attacks = [
 		attack_phase2_a,
 		attack_phase2_b,
-		attack_phase2_c
 	]
 
 	current_attack = randi() % attacks.size()
@@ -171,15 +186,19 @@ func attack_phase1_b():
 
 func attack_phase2_a():
 
-	print("Phase 2 - Attack A")
-
+	$SFSprite.play("cry_phase2")
+	await $SFSprite.animation_finished
+	get_parent().drop_mop()
+	$SFSprite.play("idle_phase2")
 	attack_finished()
 
 
 func attack_phase2_b():
 
-	print("Phase 2 - Attack B")
-
+	$SFSprite.play("ring_phase2")
+	await $SFSprite.animation_finished
+	get_parent().drop_mop()
+	$SFSprite.play("idle_phase2")
 	attack_finished()
 
 

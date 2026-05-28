@@ -231,6 +231,7 @@ script = ExtResource("1_h2yge")
 PinkPony = ExtResource("2_272bh")
 
 [node name="Mophead" parent="." unique_id=1274740527 instance=ExtResource("1_ig7tw")]
+z_index = 1
 position = Vector2(96, 167)
 
 [node name="SexyBucket" parent="." unique_id=768804504 instance=ExtResource("6_7mycd")]
@@ -304,7 +305,7 @@ text = "Press \"S\" to Swap"
 offset_left = 24.0
 offset_top = 439.0
 offset_right = 288.0
-offset_bottom = 535.0011
+offset_bottom = 535.0005
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_7mycd")
 theme_override_font_sizes/font_size = 25
