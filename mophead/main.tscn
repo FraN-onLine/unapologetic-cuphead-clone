@@ -162,6 +162,67 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="Animation" id="Animation_kek77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Instructions2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24, 439)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Instructions:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 547)]
+}
+
+[sub_resource type="Animation" id="Animation_4c57u"]
+resource_name = "instructions"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Instructions2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(24, 439), Vector2(24, 424)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Instructions:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(80, 547), Vector2(80, 544)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efxa6"]
+_data = {
+&"RESET": SubResource("Animation_kek77"),
+&"instructions": SubResource("Animation_4c57u")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 size = Vector2(112, 104)
 
@@ -243,7 +304,7 @@ text = "Press \"S\" to Swap"
 offset_left = 24.0
 offset_top = 439.0
 offset_right = 288.0
-offset_bottom = 535.0
+offset_bottom = 535.0011
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_7mycd")
 theme_override_font_sizes/font_size = 25
@@ -266,6 +327,10 @@ offset_right = 41.0
 offset_bottom = 563.0
 scale = Vector2(2, 2)
 texture = ExtResource("8_5vw27")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=1750315272]
+libraries/ = SubResource("AnimationLibrary_efxa6")
+autoplay = &"instructions"
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1742025734]
 position = Vector2(307, 178)
