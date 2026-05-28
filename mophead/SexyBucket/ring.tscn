@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://dsuejjhed1msm"]
+
+[ext_resource type="Script" uid="uid://cscgae1j37gwh" path="res://SexyBucket/ring.gd" id="1_fnk3q"]
+[ext_resource type="Texture2D" uid="uid://cdceald0lvi7" path="res://Assets/SexyBucket/Fate of Ophelia-Sheet.png" id="2_fnk3q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_767h2"]
+atlas = ExtResource("2_fnk3q")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiegb"]
+atlas = ExtResource("2_fnk3q")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae43x"]
+atlas = ExtResource("2_fnk3q")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p1xv"]
+atlas = ExtResource("2_fnk3q")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kv45s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_767h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wiegb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae43x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p1xv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heug8"]
+size = Vector2(36, 35)
+
+[node name="PinkPony" type="Area2D" unique_id=965689991]
+script = ExtResource("1_fnk3q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1518330726]
+sprite_frames = SubResource("SpriteFrames_kv45s")
+autoplay = "default"
+frame_progress = 0.88557863
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1225562091]
+shape = SubResource("RectangleShape2D_heug8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1336454931]
+position = Vector2(-498, 182)
+rect = Rect2(490, -189, 16, 14)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

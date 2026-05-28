@@ -197,7 +197,7 @@ func attack_phase2_b():
 
 	$SFSprite.play("ring_phase2")
 	await $SFSprite.animation_finished
-	get_parent().drop_mop()
+	get_parent().spawn_ring()
 	$SFSprite.play("idle_phase2")
 	attack_finished()
 

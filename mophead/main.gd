@@ -2,6 +2,7 @@ extends Node2D
 
 var dead = false
 @export var PinkPony: PackedScene
+@export var Ring: PackedScene
 var hazardscd = 0
 var instructions_on = true
 var timer_ins = 0
@@ -38,6 +39,14 @@ func spawn_pony():
 	add_child(pp)
 
 	pp.global_position = $Marker2D.position
+	
+func spawn_ring():
+	print("spawn pony")
+	for i in range(3):
+		var ring = Ring.instantiate()
+		add_child(ring)
+		ring.global_position = $Marker2D2.position
+		await get_tree().create_timer(2).timeout
 
 func drop_mop():
 	$Mop.play("default")
