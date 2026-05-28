@@ -1,3 +1,31 @@
 [gd_scene format=3 uid="uid://c2xdhumhuaha6"]
 
+[ext_resource type="Texture2D" uid="uid://v6dyun6uhda" path="res://Assets/LOGO.png" id="1_ouk20"]
+[ext_resource type="FontFile" uid="uid://bhsapkumh7myh" path="res://Assets/fusion-pixel-12px-monospaced-kr-latin-400-normal.ttf" id="2_mae5d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hy44"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [node name="Menu" type="Node2D" unique_id=1471323895]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=312479525]
+offset_left = 356.0
+offset_top = -26.0
+offset_right = 769.0
+offset_bottom = 360.0
+texture = ExtResource("1_ouk20")
+
+[node name="Button" type="Button" parent="." unique_id=1550259643]
+offset_left = 475.0
+offset_top = 274.0
+offset_right = 715.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_mae5d")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hy44")
+text = "START"

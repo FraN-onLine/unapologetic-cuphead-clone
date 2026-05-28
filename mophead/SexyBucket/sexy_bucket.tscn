@@ -3,6 +3,66 @@
 [ext_resource type="Script" uid="uid://d28qmwol252w2" path="res://SexyBucket/sexy_bucket.gd" id="1_mrios"]
 [ext_resource type="Texture2D" uid="uid://j4agpmkemdsi" path="res://Assets/SexyBucket/SB-Sheet.png" id="1_u282t"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewm3q"]
+atlas = ExtResource("1_u282t")
+region = Rect2(6240, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sa70"]
+atlas = ExtResource("1_u282t")
+region = Rect2(6396, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd6r1"]
+atlas = ExtResource("1_u282t")
+region = Rect2(6552, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ukko"]
+atlas = ExtResource("1_u282t")
+region = Rect2(6708, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2al6"]
+atlas = ExtResource("1_u282t")
+region = Rect2(6864, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22acq"]
+atlas = ExtResource("1_u282t")
+region = Rect2(7020, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asbba"]
+atlas = ExtResource("1_u282t")
+region = Rect2(4836, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqnfx"]
+atlas = ExtResource("1_u282t")
+region = Rect2(4992, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcgy0"]
+atlas = ExtResource("1_u282t")
+region = Rect2(5148, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1icu"]
+atlas = ExtResource("1_u282t")
+region = Rect2(5304, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkep5"]
+atlas = ExtResource("1_u282t")
+region = Rect2(5460, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60mgn"]
+atlas = ExtResource("1_u282t")
+region = Rect2(5616, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kagln"]
+atlas = ExtResource("1_u282t")
+region = Rect2(5772, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_theca"]
+atlas = ExtResource("1_u282t")
+region = Rect2(5928, 0, 156, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7sfr"]
+atlas = ExtResource("1_u282t")
+region = Rect2(6084, 0, 156, 131)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrios"]
 atlas = ExtResource("1_u282t")
 region = Rect2(0, 0, 156, 131)
@@ -135,6 +195,64 @@ region = Rect2(3120, 0, 156, 131)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ewm3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sa70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nd6r1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ukko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2al6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22acq")
+}],
+"loop": false,
+"name": &"enter_phase1",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asbba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqnfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcgy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1icu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkep5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60mgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kagln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_theca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7sfr")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"exit_phase1",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mrios")
 }, {
 "duration": 1.0,
@@ -258,10 +376,10 @@ script = ExtResource("1_mrios")
 position = Vector2(-1.0000076, -1.0000019)
 scale = Vector2(2.0384617, 2.0877862)
 sprite_frames = SubResource("SpriteFrames_xfq8q")
-animation = &"stomp_phase1"
+animation = &"enter_phase1"
 autoplay = "idle_phase1"
-frame = 7
-frame_progress = 0.44409102
+frame = 5
+frame_progress = 1.0
 
 [node name="AttackCooldownTimer" type="Timer" parent="." unique_id=254762696]
 wait_time = 1.5

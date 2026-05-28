@@ -16,13 +16,19 @@ var current_phase = BossPhase.PHASE_1
 
 var is_attacking = false
 var current_attack = -1
+var take_no_damage = false
 
 #timer
 @onready var attack_cooldown_timer = $AttackCooldownTimer
 
 
 func _ready():
-
+	take_no_damage = true
+	$SBSprite.play("enter_phase1")
+	await $SBSprite.animation_finished
+	take_no_damage = false
+	$SBSprite.play("idle_phase1")
+	await get_tree().create_timer(0.5).timeout
 	update_phase()
 
 	start_attack_cycle()
@@ -31,7 +37,8 @@ func _ready():
 func take_damage(amount: int):
 
 	#brief white flash on damage
-
+	if take_no_damage:
+		return
 	$SBSprite.modulate = Color(1, 1, 1, 0.8)
 	await get_tree().create_timer(0.1).timeout
 	$SBSprite.modulate = Color(1, 1, 1, 1)
@@ -73,6 +80,8 @@ func on_phase_changed():
 
 		BossPhase.PHASE_2:
 			print("Entered Phase 2")
+			take_no_damage = true
+			$SBSprite.play("exit_phase1")
 
 		BossPhase.PHASE_3:
 			print("Entered Phase 3")
