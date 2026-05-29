@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 			$CanvasLayer/HPLabel.text = "HP: " + str($Mophead.HP)
 		else:
 			$CanvasLayer/HPLabel.text = "HP: " + str($Mophead.HP)
-			$Mophead.queue_free()
 			dead = true
 	if hazardscd < 0:
 		hazardscd = 7.5
@@ -101,9 +100,11 @@ func _on_mop_area_body_entered(body: Node2D) -> void:
 		print("Mop hit Mophead")
 
 func wait_for_frame(sprite: AnimatedSprite2D, target_frame: int):
-
 	while sprite.frame != target_frame:
+		if not get_tree():
+			return
 		await get_tree().process_frame
+		
 
 func switch_weapon(type):
 	if type == "blue":

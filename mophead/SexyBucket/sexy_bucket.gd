@@ -328,6 +328,8 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func wait_for_frame(sprite: AnimatedSprite2D, target_frame: int):
 
 	while sprite.frame != target_frame:
+		if not get_tree():
+			return 
 		await get_tree().process_frame
 
 

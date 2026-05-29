@@ -282,3 +282,4 @@ func take_hit(source_position: Vector2):
 func die():
 
 	print("Mophead has died!")
+	get_tree().change_scene_to_file("res://menu.tscn")
