@@ -32,8 +32,13 @@ func _process(delta: float) -> void:
 		if $SexyBucket.hp < 951 and $SexyBucket.hp > 700:
 			spawn_pony()
 		elif $SexyBucket.hp < 501 and $SexyBucket.hp > 250:
-			alleygator()
-	
+			alleygator()	
+		elif $SexyBucket.hp < 200:
+			#random between alligator or mop
+			if randi() % 2 == 0:
+				alleygator()
+			else:
+				drop_mop()
 
 func spawn_pony():
 	print("spawn pony")
@@ -61,7 +66,7 @@ func drop_tears():
 		$Marker2D5
 	]
 
-	for i in range(5):
+	for i in range(6):
 
 		var tear = Tear.instantiate()
 
@@ -72,7 +77,7 @@ func drop_tears():
 
 		tear.global_position = random_marker.global_position
 
-		await get_tree().create_timer(0.8).timeout
+		await get_tree().create_timer(0.6).timeout
 
 func drop_mop():
 	$Mop.play("default")

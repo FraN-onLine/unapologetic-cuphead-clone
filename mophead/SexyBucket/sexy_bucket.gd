@@ -18,7 +18,9 @@ var is_attacking = false
 var current_attack = -1
 var take_no_damage = false
 
-#timer
+var last_attack = -1
+var same_attack_count = 0
+
 @onready var attack_cooldown_timer = $AttackCooldownTimer
 
 
@@ -36,14 +38,17 @@ func _ready():
 
 func take_damage(amount: int):
 
-	#brief white flash on damage
 	if take_no_damage:
 		return
+
 	$SBSprite.modulate = Color(1, 1, 1, 0.8)
 	$SFSprite.modulate = Color(1, 1, 1, 0.8)
+
 	await get_tree().create_timer(0.1).timeout
+
 	$SBSprite.modulate = Color(1, 1, 1, 1)
 	$SFSprite.modulate = Color(1, 1, 1, 1)
+
 	hp -= amount
 
 	hp = clamp(hp, 0, MAX_HP)
@@ -82,22 +87,32 @@ func on_phase_changed():
 
 		BossPhase.PHASE_2:
 			print("Entered Phase 2")
+
 			take_no_damage = true
+
 			$SBSprite.play("exit_phase1")
+
 			await $SBSprite.animation_finished
+
 			attack_cooldown_timer.wait_time = 2.2
+
 			$Hitbox1.monitoring = false
 			$Hitbox2.monitoring = true
+
 			$SBSprite.visible = false
 			$SFSprite.visible = true
+
 			$SFSprite.play("enter_phase2")
+
 			await $SFSprite.animation_finished
+
 			take_no_damage = false
+
 			$SFSprite.play("idle_phase2")
-			
 
 		BossPhase.PHASE_3:
 			print("Entered Phase 3")
+
 
 func start_attack_cycle():
 
@@ -113,11 +128,12 @@ func start_attack_cycle():
 
 
 func select_attack():
+
 	if take_no_damage:
 		is_attacking = false
 		attack_cooldown_timer.start()
 		return
-		
+
 	match current_phase:
 
 		BossPhase.PHASE_1:
@@ -137,7 +153,19 @@ func phase_1_attack_selection():
 		attack_phase1_b,
 	]
 
-	current_attack = randi() % attacks.size()
+	var attack_index = randi() % attacks.size()
+
+	while attack_index == last_attack and same_attack_count >= 2:
+		attack_index = randi() % attacks.size()
+
+	current_attack = attack_index
+
+	if current_attack == last_attack:
+		same_attack_count += 1
+	else:
+		same_attack_count = 1
+
+	last_attack = current_attack
 
 	attacks[current_attack].call()
 
@@ -149,65 +177,104 @@ func phase_2_attack_selection():
 		attack_phase2_b,
 	]
 
-	current_attack = randi() % attacks.size()
+	var attack_index = randi() % attacks.size()
+
+	while attack_index == last_attack and same_attack_count >= 2:
+		attack_index = randi() % attacks.size()
+
+	current_attack = attack_index
+
+	if current_attack == last_attack:
+		same_attack_count += 1
+	else:
+		same_attack_count = 1
+
+	last_attack = current_attack
 
 	attacks[current_attack].call()
+
 
 func phase_3_attack_selection():
 
 	var attacks = [
 		attack_phase3_a,
-		attack_phase3_b,
-		attack_phase3_c
+		attack_phase3_b
 	]
 
-	current_attack = randi() % attacks.size()
+	var attack_index = randi() % attacks.size()
+
+	while attack_index == last_attack and same_attack_count >= 2:
+		attack_index = randi() % attacks.size()
+
+	current_attack = attack_index
+
+	if current_attack == last_attack:
+		same_attack_count += 1
+	else:
+		same_attack_count = 1
+
+	last_attack = current_attack
 
 	attacks[current_attack].call()
+
 
 func attack_phase1_a():
 
 	$SBSprite.play("stomp_phase1")
+
 	await wait_for_frame($SBSprite, 6)
+
 	$StompArea.monitoring = true
+
 	await wait_for_frame($SBSprite, 8)
+
 	$StompArea.monitoring = false
+
 	await $SBSprite.animation_finished
+
 	$SBSprite.play("idle_phase1")
+
 	attack_finished()
+
 
 func attack_phase1_b():
 
 	$SBSprite.play("mop_phase1")
+
 	await $SBSprite.animation_finished
+
 	get_parent().drop_mop()
+
 	$SBSprite.play("idle_phase1")
+
 	attack_finished()
 
 
 func attack_phase2_a():
 
 	$SFSprite.play("cry_phase2")
-	await $SFSprite.animation_finished
+
 	get_parent().drop_tears()
+
+	await $SFSprite.animation_finished
+
 	$SFSprite.play("idle_phase2")
+
 	attack_finished()
 
 
 func attack_phase2_b():
 
 	$SFSprite.play("ring_phase2")
+
 	await $SFSprite.animation_finished
+
 	get_parent().spawn_ring()
+
 	$SFSprite.play("idle_phase2")
-	attack_finished()
-
-
-func attack_phase2_c():
-
-	print("Phase 2 - Attack C")
 
 	attack_finished()
+
 
 func attack_phase3_a():
 
@@ -223,12 +290,6 @@ func attack_phase3_b():
 	attack_finished()
 
 
-func attack_phase3_c():
-
-	print("Phase 3 - Attack C")
-
-	attack_finished()
-
 func attack_finished():
 
 	is_attacking = false
@@ -240,6 +301,7 @@ func _on_attack_cooldown_timer_timeout():
 
 	start_attack_cycle()
 
+
 func die():
 
 	print("Boss Defeated")
@@ -248,16 +310,20 @@ func die():
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
+
 	if area.is_in_group("bullet"):
 		take_damage(area.DAMAGE)
 		area.queue_free()
+
 	if area.is_in_group("player"):
 		area.take_hit()
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
+
 	if body.is_in_group("player"):
 		body.take_hit(global_position)
+
 
 func wait_for_frame(sprite: AnimatedSprite2D, target_frame: int):
 
@@ -266,6 +332,6 @@ func wait_for_frame(sprite: AnimatedSprite2D, target_frame: int):
 
 
 func _on_stomp_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
 
+	if body.is_in_group("player"):
 		body.take_hit(global_position)
