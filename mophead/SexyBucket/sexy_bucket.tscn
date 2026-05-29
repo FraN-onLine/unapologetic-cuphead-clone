@@ -734,5 +734,4 @@ shape = SubResource("RectangleShape2D_hrq48")
 [connection signal="area_entered" from="Hitbox1" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox1" to="." method="_on_hitbox_body_entered"]
 [connection signal="area_entered" from="Hitbox2" to="." method="_on_hitbox_area_entered"]
-[connection signal="body_entered" from="Hitbox2" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="StompArea" to="." method="_on_stomp_area_body_entered"]

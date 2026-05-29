@@ -85,6 +85,7 @@ func on_phase_changed():
 			take_no_damage = true
 			$SBSprite.play("exit_phase1")
 			await $SBSprite.animation_finished
+			attack_cooldown_timer.wait_time = 2.2
 			$Hitbox1.monitoring = false
 			$Hitbox2.monitoring = true
 			$SBSprite.visible = false
@@ -188,7 +189,7 @@ func attack_phase2_a():
 
 	$SFSprite.play("cry_phase2")
 	await $SFSprite.animation_finished
-	get_parent().drop_mop()
+	get_parent().drop_tears()
 	$SFSprite.play("idle_phase2")
 	attack_finished()
 

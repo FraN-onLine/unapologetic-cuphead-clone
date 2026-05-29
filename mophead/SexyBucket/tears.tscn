@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dqgkpslvswq2f"]
+
+[ext_resource type="Script" uid="uid://c4rwkn7rwjiro" path="res://SexyBucket/tears.gd" id="1_refg8"]
+[ext_resource type="Texture2D" uid="uid://c17kmmlcm1ipj" path="res://Assets/SexyBucket/Tears run down my thighs-Sheet.png" id="2_wyway"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjp1d"]
+atlas = ExtResource("2_wyway")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fnhy"]
+atlas = ExtResource("2_wyway")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kv45s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjp1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fnhy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heug8"]
+size = Vector2(23, 24.5)
+
+[node name="PinkPony" type="Area2D" unique_id=965689991]
+script = ExtResource("1_refg8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1518330726]
+sprite_frames = SubResource("SpriteFrames_kv45s")
+autoplay = "default"
+frame_progress = 0.49527723
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1225562091]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_heug8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1336454931]
+position = Vector2(-498, 182)
+rect = Rect2(490, -189, 16, 14)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

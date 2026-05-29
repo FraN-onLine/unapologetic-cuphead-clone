@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://dsuejjhed1msm" path="res://SexyBucket/ring.tscn" id="3_4c57u"]
 [ext_resource type="Texture2D" uid="uid://c7po2brcg73ge" path="res://Assets/SexyBucket/Mop-Sheet.png" id="4_1bvp3"]
 [ext_resource type="FontFile" uid="uid://bhsapkumh7myh" path="res://Assets/fusion-pixel-12px-monospaced-kr-latin-400-normal.ttf" id="4_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dqgkpslvswq2f" path="res://SexyBucket/tears.tscn" id="4_efxa6"]
 [ext_resource type="PackedScene" uid="uid://doajm5a5403xt" path="res://SexyBucket/sexy_bucket.tscn" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dck4ir1ff5q3h" path="res://Assets/UI/WeaponBox.png" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://n0ubyrkf8u1t" path="res://Assets/Mophead/Mophead Blue Bullets.png" id="8_kek77"]
+[ext_resource type="Texture2D" uid="uid://dcnpxmf3av7li" path="res://Assets/SexyBucket/Alleygater-Sheet.png" id="9_dg77c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(1146.5, 134)
@@ -163,6 +165,104 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w48qg"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vivmo"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaehf"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_074og"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cegan"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(480, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82xsv"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(560, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_getpj"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(640, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryguw"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(720, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d13ii"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(800, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u8w0"]
+atlas = ExtResource("9_dg77c")
+region = Rect2(880, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0odxb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycdy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w48qg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w48qg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vivmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cqfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaehf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_074og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cegan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82xsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_getpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryguw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d13ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u8w0")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
 [sub_resource type="Animation" id="Animation_kek77"]
 length = 0.001
 tracks/0/type = "value"
@@ -227,10 +327,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 size = Vector2(112, 104)
 
-[node name="Stage" type="Node2D" unique_id=1979549985]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
+size = Vector2(136, 104)
+
+[node name="Main" type="Node2D" unique_id=1979549985]
 script = ExtResource("1_h2yge")
 PinkPony = ExtResource("2_272bh")
 Ring = ExtResource("3_4c57u")
+Tear = ExtResource("4_efxa6")
 
 [node name="Mophead" parent="." unique_id=1274740527 instance=ExtResource("1_ig7tw")]
 z_index = 1
@@ -279,6 +383,14 @@ z_index = 1
 position = Vector2(117, 128)
 sprite_frames = SubResource("SpriteFrames_ycdy4")
 frame = 9
+frame_progress = 1.0
+
+[node name="Alleygator" type="AnimatedSprite2D" parent="." unique_id=1030224541]
+z_index = 1
+position = Vector2(310.75, 157.5)
+scale = Vector2(1.8437498, 1.7874998)
+sprite_frames = SubResource("SpriteFrames_0odxb")
+frame = 13
 frame_progress = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1780173559]
@@ -339,7 +451,16 @@ autoplay = &"instructions"
 position = Vector2(307, 178)
 
 [node name="Marker2D2" type="Marker2D" parent="." unique_id=871026744]
-position = Vector2(6, 172)
+position = Vector2(6, 181)
+
+[node name="Marker2D3" type="Marker2D" parent="." unique_id=187694097]
+position = Vector2(57, 6)
+
+[node name="Marker2D4" type="Marker2D" parent="." unique_id=612781473]
+position = Vector2(180, 5)
+
+[node name="Marker2D5" type="Marker2D" parent="." unique_id=1504236744]
+position = Vector2(312, 7)
 
 [node name="MopArea" type="Area2D" parent="." unique_id=1219703361]
 monitoring = false
@@ -348,4 +469,12 @@ monitoring = false
 position = Vector2(88, 161)
 shape = SubResource("RectangleShape2D_272bh")
 
+[node name="AlleygatorArea" type="Area2D" parent="." unique_id=394345168]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlleygatorArea" unique_id=1391618228]
+position = Vector2(311, 159)
+shape = SubResource("RectangleShape2D_efxa6")
+
 [connection signal="body_entered" from="MopArea" to="." method="_on_mop_area_body_entered"]
+[connection signal="body_entered" from="AlleygatorArea" to="." method="_on_alleygator_area_body_entered"]

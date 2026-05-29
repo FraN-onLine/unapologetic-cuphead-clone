@@ -3,6 +3,7 @@ extends Node2D
 var dead = false
 @export var PinkPony: PackedScene
 @export var Ring: PackedScene
+@export var Tear: PackedScene
 var hazardscd = 0
 var instructions_on = true
 var timer_ins = 0
@@ -30,6 +31,8 @@ func _process(delta: float) -> void:
 		hazardscd = 7.5
 		if $SexyBucket.hp < 951 and $SexyBucket.hp > 700:
 			spawn_pony()
+		elif $SexyBucket.hp < 501 and $SexyBucket.hp > 250:
+			alleygator()
 	
 
 func spawn_pony():
@@ -46,7 +49,30 @@ func spawn_ring():
 		var ring = Ring.instantiate()
 		add_child(ring)
 		ring.global_position = $Marker2D2.position
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(1).timeout
+		
+func drop_tears():
+
+	print("spawn tears")
+
+	var markers = [
+		$Marker2D3,
+		$Marker2D4,
+		$Marker2D5
+	]
+
+	for i in range(5):
+
+		var tear = Tear.instantiate()
+
+		add_child(tear)
+
+		# pick random marker
+		var random_marker = markers.pick_random()
+
+		tear.global_position = random_marker.global_position
+
+		await get_tree().create_timer(0.8).timeout
 
 func drop_mop():
 	$Mop.play("default")
@@ -54,6 +80,13 @@ func drop_mop():
 	$MopArea.monitoring = true
 	await wait_for_frame($Mop, 7)
 	$MopArea.monitoring = false
+	
+func alleygator():
+	$Alleygator.play("default")
+	await wait_for_frame($Alleygator, 6)
+	$AlleygatorArea.monitoring = true
+	await wait_for_frame($Alleygator, 10)
+	$AlleygatorArea.monitoring = false
 	
 func _on_mop_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -72,3 +105,11 @@ func switch_weapon(type):
 		$CanvasLayer/Weapon.texture = load("res://Assets/Mophead/Mophead Blue Bullets.png")
 	else:
 		$CanvasLayer/Weapon.texture = load("res://Assets/Mophead/Mophead Pink Bullets.png")
+
+
+func _on_alleygator_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+
+		body.take_hit($AlleygatorArea.global_position)
+
+		print("Mop hit Mophead")
