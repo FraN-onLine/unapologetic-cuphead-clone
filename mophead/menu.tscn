@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://brrae5ysu3mmw" path="res://menu.gd" id="1_mae5d"]
 [ext_resource type="Texture2D" uid="uid://v6dyun6uhda" path="res://Assets/LOGO.png" id="1_ouk20"]
 [ext_resource type="FontFile" uid="uid://bhsapkumh7myh" path="res://Assets/fusion-pixel-12px-monospaced-kr-latin-400-normal.ttf" id="2_mae5d"]
+[ext_resource type="Texture2D" uid="uid://sgjijf5qrwqm" path="res://Assets/UI/Menu-Sheet.png" id="4_4hy44"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hy44"]
 bg_color = Color(1, 1, 1, 1)
@@ -48,6 +49,42 @@ _data = {
 &"bob": SubResource("Animation_4hy44")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytr4m"]
+atlas = ExtResource("4_4hy44")
+region = Rect2(0, 0, 1152, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l48gv"]
+atlas = ExtResource("4_4hy44")
+region = Rect2(1152, 0, 1152, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecwwl"]
+atlas = ExtResource("4_4hy44")
+region = Rect2(2304, 0, 1152, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk3ma"]
+atlas = ExtResource("4_4hy44")
+region = Rect2(3456, 0, 1152, 658)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrnbx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytr4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l48gv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecwwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk3ma")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="Menu" type="Node2D" unique_id=1471323895]
 script = ExtResource("1_mae5d")
 
@@ -72,5 +109,12 @@ text = "START"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1434277084]
 libraries/ = SubResource("AnimationLibrary_ytr4m")
 autoplay = &"bob"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=644998349]
+z_index = -2
+position = Vector2(576, 329)
+sprite_frames = SubResource("SpriteFrames_nrnbx")
+autoplay = "default"
+frame_progress = 0.7828459
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

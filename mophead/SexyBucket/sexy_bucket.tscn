@@ -452,6 +452,34 @@ region = Rect2(7936, 0, 256, 236)
 atlas = ExtResource("3_hrq48")
 region = Rect2(8192, 0, 256, 236)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvnfp"]
+atlas = ExtResource("3_hrq48")
+region = Rect2(8704, 0, 256, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mt0e"]
+atlas = ExtResource("3_hrq48")
+region = Rect2(8960, 0, 256, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh1sf"]
+atlas = ExtResource("3_hrq48")
+region = Rect2(9216, 0, 256, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ade0"]
+atlas = ExtResource("3_hrq48")
+region = Rect2(9472, 0, 256, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lquy"]
+atlas = ExtResource("3_hrq48")
+region = Rect2(9728, 0, 256, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmdk2"]
+atlas = ExtResource("3_hrq48")
+region = Rect2(9984, 0, 256, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odtgv"]
+atlas = ExtResource("3_hrq48")
+region = Rect2(10240, 0, 256, 236)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_cruxk"]
 atlas = ExtResource("3_hrq48")
 region = Rect2(0, 0, 256, 236)
@@ -576,31 +604,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_asbba")
+"texture": SubResource("AtlasTexture_hvnfp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oqnfx")
+"texture": SubResource("AtlasTexture_7mt0e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wcgy0")
+"texture": SubResource("AtlasTexture_mh1sf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j1icu")
+"texture": SubResource("AtlasTexture_8ade0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jkep5")
+"texture": SubResource("AtlasTexture_4lquy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_60mgn")
+"texture": SubResource("AtlasTexture_kmdk2")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kagln")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_theca")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p7sfr")
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_odtgv")
 }, {
 "duration": 1.0,
 "texture": null
@@ -703,8 +725,10 @@ visible = false
 position = Vector2(-70, 34)
 scale = Vector2(1.5746695, 1.6093001)
 sprite_frames = SubResource("SpriteFrames_p1v4d")
-animation = &"cry_phase2"
+animation = &"exit_phase2"
 autoplay = "idle_phase2"
+frame = 7
+frame_progress = 1.0
 
 [node name="AttackCooldownTimer" type="Timer" parent="." unique_id=254762696]
 wait_time = 1.5

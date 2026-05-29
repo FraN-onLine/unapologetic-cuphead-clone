@@ -89,8 +89,33 @@ func on_phase_changed():
 			print("Entered Phase 2")
 
 			take_no_damage = true
-
+			$Hitbox1.monitoring = false
 			$SBSprite.play("exit_phase1")
+
+			await $SBSprite.animation_finished
+
+			attack_cooldown_timer.wait_time = 2.2
+
+	
+			$Hitbox2.monitoring = true
+
+			$SBSprite.visible = false
+			$SFSprite.visible = true
+
+			$SFSprite.play("enter_phase2")
+
+			await $SFSprite.animation_finished
+
+			take_no_damage = false
+
+			$SFSprite.play("idle_phase2")
+
+		BossPhase.PHASE_3:
+			print("Entered Phase 3")
+
+			take_no_damage = true
+
+			$SFSprite.play("exit_phase2")
 
 			await $SBSprite.animation_finished
 
@@ -109,10 +134,6 @@ func on_phase_changed():
 			take_no_damage = false
 
 			$SFSprite.play("idle_phase2")
-
-		BossPhase.PHASE_3:
-			print("Entered Phase 3")
-
 
 func start_attack_cycle():
 
