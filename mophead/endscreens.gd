@@ -11,4 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://menu.tscn")
+
+func _on_retry_pressed() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")

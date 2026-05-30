@@ -82,7 +82,7 @@ position = Vector2(577, 324)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_nrnbx")
 autoplay = "default"
-frame_progress = 0.63389295
+frame_progress = 0.676122
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="." unique_id=1743650730]

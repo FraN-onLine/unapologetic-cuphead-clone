@@ -110,10 +110,10 @@ offset_bottom = 405.0
 texture = ExtResource("1_ouk20")
 
 [node name="Button" type="Button" parent="." unique_id=1550259643]
-offset_left = 462.0
-offset_top = 276.0
-offset_right = 702.0
-offset_bottom = 359.0
+offset_left = 428.0
+offset_top = 303.0
+offset_right = 739.0
+offset_bottom = 406.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_mae5d")
 theme_override_font_sizes/font_size = 32
@@ -131,6 +131,7 @@ z_index = -2
 position = Vector2(576, 329)
 sprite_frames = SubResource("SpriteFrames_nrnbx")
 autoplay = "default"
-frame_progress = 0.47934753
+frame_progress = 0.3584327
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

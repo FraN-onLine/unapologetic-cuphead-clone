@@ -64,10 +64,10 @@ animations = [{
 script = ExtResource("1_46blr")
 
 [node name="Button" type="Button" parent="." unique_id=1550259643]
-offset_left = 462.0
-offset_top = 460.0
-offset_right = 702.0
-offset_bottom = 543.0
+offset_left = 463.0
+offset_top = 438.0
+offset_right = 703.0
+offset_bottom = 521.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_s23sx")
 theme_override_font_sizes/font_size = 32
@@ -76,13 +76,26 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_ytr4m")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l48gv")
 text = "MENU"
 
+[node name="Button2" type="Button" parent="." unique_id=1090478547]
+offset_left = 463.0
+offset_top = 537.0
+offset_right = 703.0
+offset_bottom = 620.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_s23sx")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ytr4m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l48gv")
+text = "RETRY"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=644998349]
 z_index = -2
 position = Vector2(577, 324)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_nrnbx")
 autoplay = "default"
-frame_progress = 0.2892878
+frame_progress = 0.26329142
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="." unique_id=1743650730]
@@ -98,3 +111,4 @@ THAT'S A WEAK ARMED PUSSY"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_retry_pressed"]
