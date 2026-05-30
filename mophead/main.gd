@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 			dead = true
 	if hazardscd < 0:
 		hazardscd = 7.5
-		if $SexyBucket.hp < 951 and $SexyBucket.hp > 700:
+		if $SexyBucket.hp < 851 and $SexyBucket.hp > 600:
 			spawn_pony()
 		elif $SexyBucket.hp < 501 and $SexyBucket.hp > 300:
 			alleygator()	
