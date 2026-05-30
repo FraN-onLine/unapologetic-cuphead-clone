@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://d321xxqo28454"]
+
+[ext_resource type="Script" uid="uid://dmj62bcfgb2mr" path="res://SexyBucket/coffee.gd" id="1_263da"]
+[ext_resource type="Texture2D" uid="uid://ctkoc757f3syo" path="res://Assets/SexyBucket/coffeeforurhead-Sheet.png" id="2_ny5cp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n17hl"]
+atlas = ExtResource("2_ny5cp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqnmi"]
+atlas = ExtResource("2_ny5cp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf6w6"]
+atlas = ExtResource("2_ny5cp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jqmy"]
+atlas = ExtResource("2_ny5cp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc48o"]
+atlas = ExtResource("2_ny5cp")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kv45s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n17hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqnmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf6w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jqmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc48o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heug8"]
+size = Vector2(23, 24.5)
+
+[node name="PinkPony" type="Area2D" unique_id=965689991]
+script = ExtResource("1_263da")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1518330726]
+sprite_frames = SubResource("SpriteFrames_kv45s")
+autoplay = "default"
+frame_progress = 0.7953488
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1225562091]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_heug8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1336454931]
+position = Vector2(-498, 182)
+rect = Rect2(490, -189, 16, 14)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

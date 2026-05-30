@@ -10,7 +10,7 @@ const DASH_COOLDOWN = 0.6
 var is_dashing = false
 var dash_direction = Vector2.ZERO
 var dash_cooldown_timer = 0.0
-const KNOCKBACK_FORCE_X = 420.0
+const KNOCKBACK_FORCE_X = 320.0
 const KNOCKBACK_FORCE_Y = -220.0
 const HITSTUN_TIME = 0.25
 

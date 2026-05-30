@@ -4,6 +4,7 @@ var dead = false
 @export var PinkPony: PackedScene
 @export var Ring: PackedScene
 @export var Tear: PackedScene
+@export var Coffee: PackedScene
 var hazardscd = 0
 var instructions_on = true
 var timer_ins = 0
@@ -77,6 +78,26 @@ func drop_tears():
 		tear.global_position = random_marker.global_position
 
 		await get_tree().create_timer(0.6).timeout
+		
+func coffee():
+
+	print("spawn tears")
+
+	for i in range(2):
+
+		var coffee = Coffee.instantiate()
+
+		add_child(coffee)
+
+		coffee.global_position = $Marked2D6.global_position
+		
+		var player = $Mophead
+
+		coffee.direction = (
+			player.global_position - coffee.global_position
+		).normalized()
+	
+		await get_tree().create_timer(0.1).timeout
 
 func drop_mop():
 	$Mop.play("default")

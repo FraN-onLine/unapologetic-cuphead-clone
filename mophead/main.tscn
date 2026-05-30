@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c7po2brcg73ge" path="res://Assets/SexyBucket/Mop-Sheet.png" id="4_1bvp3"]
 [ext_resource type="FontFile" uid="uid://bhsapkumh7myh" path="res://Assets/fusion-pixel-12px-monospaced-kr-latin-400-normal.ttf" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dqgkpslvswq2f" path="res://SexyBucket/tears.tscn" id="4_efxa6"]
+[ext_resource type="PackedScene" uid="uid://d321xxqo28454" path="res://SexyBucket/coffee.tscn" id="5_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://doajm5a5403xt" path="res://SexyBucket/sexy_bucket.tscn" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dck4ir1ff5q3h" path="res://Assets/UI/WeaponBox.png" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://n0ubyrkf8u1t" path="res://Assets/Mophead/Mophead Blue Bullets.png" id="8_kek77"]
@@ -335,6 +336,7 @@ script = ExtResource("1_h2yge")
 PinkPony = ExtResource("2_272bh")
 Ring = ExtResource("3_4c57u")
 Tear = ExtResource("4_efxa6")
+Coffee = ExtResource("5_ycdy4")
 
 [node name="Mophead" parent="." unique_id=1274740527 instance=ExtResource("1_ig7tw")]
 z_index = 1
@@ -462,6 +464,9 @@ position = Vector2(180, 5)
 [node name="Marker2D5" type="Marker2D" parent="." unique_id=1504236744]
 position = Vector2(312, 7)
 
+[node name="Marker2D6" type="Marker2D" parent="." unique_id=1591175487]
+position = Vector2(73, 74)
+
 [node name="MopArea" type="Area2D" parent="." unique_id=1219703361]
 monitoring = false
 
@@ -478,5 +483,3 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [connection signal="body_entered" from="MopArea" to="." method="_on_mop_area_body_entered"]
 [connection signal="body_entered" from="AlleygatorArea" to="." method="_on_alleygator_area_body_entered"]
-
-[editable path="SexyBucket"]

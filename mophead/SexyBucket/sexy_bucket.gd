@@ -1,6 +1,6 @@
 extends Node2D
 
-const MAX_HP = 1000
+const MAX_HP = 985
 const PHASE_1_THRESHOLD = 701
 const PHASE_2_THRESHOLD = 301
 
@@ -43,11 +43,12 @@ func take_damage(amount: int):
 
 	$SBSprite.modulate = Color(1, 1, 1, 0.8)
 	$SFSprite.modulate = Color(1, 1, 1, 0.8)
-
+	$SPSprite.modulate = Color(1, 1, 1, 0.8)
 	await get_tree().create_timer(0.1).timeout
 
 	$SBSprite.modulate = Color(1, 1, 1, 1)
 	$SFSprite.modulate = Color(1, 1, 1, 1)
+	$SPSprite.modulate = Color(1, 1, 1, 1)
 
 	hp -= amount
 
@@ -318,7 +319,14 @@ func attack_phase3_a():
 
 func attack_phase3_b():
 
-	print("Phase 3 - Attack B")
+	$SPSprite.play("coffee_phase3")
+
+	await wait_for_frame($SPSprite, 4)
+	get_parent().coffee()
+
+	await $SPSprite.animation_finished
+
+	$SPSprite.play("idle_phase3")
 
 	attack_finished()
 
