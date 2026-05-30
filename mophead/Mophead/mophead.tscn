@@ -5,6 +5,38 @@
 [ext_resource type="PackedScene" uid="uid://cyk8xn4jax4gm" path="res://Mophead/pinkbullet.tscn" id="3_0a4a8"]
 [ext_resource type="Texture2D" uid="uid://bee4dqrtyenck" path="res://Assets/Mophead/Mophead-Sheet.png" id="4_0a4a8"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a4a8"]
+atlas = ExtResource("4_0a4a8")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xqtd"]
+atlas = ExtResource("4_0a4a8")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py4vx"]
+atlas = ExtResource("4_0a4a8")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghxvd"]
+atlas = ExtResource("4_0a4a8")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ai613"]
+atlas = ExtResource("4_0a4a8")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwqt2"]
+atlas = ExtResource("4_0a4a8")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjmj6"]
+atlas = ExtResource("4_0a4a8")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8khte"]
+atlas = ExtResource("4_0a4a8")
+region = Rect2(704, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7il3"]
 atlas = ExtResource("4_0a4a8")
 region = Rect2(0, 0, 64, 64)
@@ -13,8 +45,53 @@ region = Rect2(0, 0, 64, 64)
 atlas = ExtResource("4_0a4a8")
 region = Rect2(64, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsfm5"]
+atlas = ExtResource("4_0a4a8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaadp"]
+atlas = ExtResource("4_0a4a8")
+region = Rect2(192, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_2xqtd"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a4a8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xqtd")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py4vx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghxvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ai613")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwqt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjmj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8khte")
+}, {
+"duration": 4.0,
+"texture": null
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r7il3")
@@ -24,6 +101,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsfm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaadp")
+}],
+"loop": false,
+"name": &"hit",
 "speed": 5.0
 }]
 
@@ -37,8 +125,10 @@ pink_bullet_scene = ExtResource("3_0a4a8")
 
 [node name="MopheadSprite" type="AnimatedSprite2D" parent="." unique_id=1936753779]
 sprite_frames = SubResource("SpriteFrames_2xqtd")
+animation = &"death"
 autoplay = "default"
-frame_progress = 0.33924654
+frame = 6
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=322549091]
 position = Vector2(-0.5, -5)

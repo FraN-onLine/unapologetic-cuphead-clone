@@ -237,6 +237,9 @@ func start_dash():
 	dash_cooldown_timer = DASH_COOLDOWN
 
 	dash_timer.start(DASH_TIME)
+	sprite.play("dash")
+	await sprite.animation_finished
+	sprite.play("default")
 
 
 func _on_dash_timer_timeout():
@@ -245,16 +248,12 @@ func _on_dash_timer_timeout():
 
 
 func take_hit(source_position: Vector2):
-
+	
 	if is_hit:
 		return
 
 	HP -= 1
 	
-	sprite.modulate = Color(1, 0.5, 0.5) # briefly tint red on hit
-	await get_tree().create_timer(0.1).timeout
-	sprite.modulate = Color(1, 1, 1) # reset tint
-
 	print("HP: ", HP)
 
 	is_hit = true
@@ -275,11 +274,19 @@ func take_hit(source_position: Vector2):
 	# apply knockback
 	velocity.x = direction.x * KNOCKBACK_FORCE_X
 	velocity.y = KNOCKBACK_FORCE_Y
-
+	sprite.play("hit")
+	sprite.modulate = Color(1, 0.5, 0.5) # briefly tint red on hit
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate = Color(1, 1, 1) # reset tint
+	await sprite.animation_finished
+	sprite.play("default")
 	if HP <= 0:
 		die()
 
 func die():
 
 	print("Mophead has died!")
+	sprite.play("death")
+	await sprite.animation_finished
+	
 	get_tree().change_scene_to_file("res://menu.tscn")

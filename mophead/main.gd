@@ -31,9 +31,9 @@ func _process(delta: float) -> void:
 		hazardscd = 7.5
 		if $SexyBucket.hp < 951 and $SexyBucket.hp > 700:
 			spawn_pony()
-		elif $SexyBucket.hp < 501 and $SexyBucket.hp > 250:
+		elif $SexyBucket.hp < 501 and $SexyBucket.hp > 300:
 			alleygator()	
-		elif $SexyBucket.hp < 200:
+		elif $SexyBucket.hp < 300:
 			#random between alligator or mop
 			if randi() % 2 == 0:
 				alleygator()
@@ -83,13 +83,13 @@ func coffee():
 
 	print("spawn tears")
 
-	for i in range(2):
+	for i in range(3):
 
 		var coffee = Coffee.instantiate()
 
 		add_child(coffee)
 
-		coffee.global_position = $Marked2D6.global_position
+		coffee.global_position = $Marker2D6.global_position
 		
 		var player = $Mophead
 

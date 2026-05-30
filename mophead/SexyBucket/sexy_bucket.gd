@@ -1,6 +1,6 @@
 extends Node2D
 
-const MAX_HP = 985
+const MAX_HP = 500
 const PHASE_1_THRESHOLD = 701
 const PHASE_2_THRESHOLD = 301
 
