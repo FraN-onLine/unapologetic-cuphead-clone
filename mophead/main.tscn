@@ -478,3 +478,5 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [connection signal="body_entered" from="MopArea" to="." method="_on_mop_area_body_entered"]
 [connection signal="body_entered" from="AlleygatorArea" to="." method="_on_alleygator_area_body_entered"]
+
+[editable path="SexyBucket"]

@@ -117,23 +117,23 @@ func on_phase_changed():
 
 			$SFSprite.play("exit_phase2")
 
-			await $SBSprite.animation_finished
+			await $SFSprite.animation_finished
 
 			attack_cooldown_timer.wait_time = 2.2
 
-			$Hitbox1.monitoring = false
-			$Hitbox2.monitoring = true
+			$Hitbox2.monitoring = false
+			$Hitbox3.monitoring = true
 
-			$SBSprite.visible = false
-			$SFSprite.visible = true
+			$SFSprite.visible = false
+			$SPSprite.visible = true
 
-			$SFSprite.play("enter_phase2")
+			$SPSprite.play("enter_phase3")
 
-			await $SFSprite.animation_finished
+			await $SPSprite.animation_finished
 
 			take_no_damage = false
 
-			$SFSprite.play("idle_phase2")
+			$SPSprite.play("idle_phase3")
 
 func start_attack_cycle():
 
@@ -299,7 +299,19 @@ func attack_phase2_b():
 
 func attack_phase3_a():
 
-	$SBSprite.play("stomp_phase1")
+	$SPSprite.play("drop_phase3")
+
+	await wait_for_frame($SPSprite, 7)
+
+	$WaterArea.monitoring = true
+
+	await wait_for_frame($SPSprite, 9)
+
+	$WaterArea.monitoring = false
+
+	await $SPSprite.animation_finished
+
+	$SPSprite.play("idle_phase3")
 
 	attack_finished()
 
@@ -356,5 +368,10 @@ func wait_for_frame(sprite: AnimatedSprite2D, target_frame: int):
 
 func _on_stomp_area_body_entered(body: Node2D) -> void:
 
+	if body.is_in_group("player"):
+		body.take_hit(global_position)
+
+
+func _on_water_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.take_hit(global_position)
