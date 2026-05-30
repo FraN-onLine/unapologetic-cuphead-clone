@@ -989,7 +989,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rbmqh")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": null
 }],
 "loop": false,
@@ -1037,8 +1037,10 @@ visible = false
 position = Vector2(-67, 36)
 scale = Vector2(1.3420006, 1.4844959)
 sprite_frames = SubResource("SpriteFrames_x8bhg")
-animation = &"coffee_phase3"
+animation = &"ko"
 autoplay = "idle_phase3"
+frame = 8
+frame_progress = 1.0
 
 [node name="AttackCooldownTimer" type="Timer" parent="." unique_id=254762696]
 wait_time = 1.5

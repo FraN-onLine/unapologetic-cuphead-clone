@@ -294,4 +294,4 @@ func die():
 	sprite.play("death")
 	await sprite.animation_finished
 	
-	get_tree().change_scene_to_file("res://menu.tscn")
+	get_tree().change_scene_to_file("res://lose.tscn")

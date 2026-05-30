@@ -345,7 +345,9 @@ func _on_attack_cooldown_timer_timeout():
 
 func die():
 
-	print("Boss Defeated")
+	$SPSprite.play("ko")
+	await $SPSprite.animation_finished
+	get_tree().change_scene_to_file("res://win.tscn")
 
 	queue_free()
 
@@ -375,9 +377,9 @@ func wait_for_frame(sprite: AnimatedSprite2D, target_frame: int):
 
 
 func _on_stomp_area_body_entered(body: Node2D) -> void:
-
-	if body.is_in_group("player"):
-		body.take_hit(global_position)
+	if current_phase == BossPhase.PHASE_1:
+		if body.is_in_group("player"):
+			body.take_hit(global_position)
 
 
 func _on_water_area_body_entered(body: Node2D) -> void:

@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bhx5sq6rqqki8"]
+
+[ext_resource type="Script" uid="uid://dq81moye23t2p" path="res://endscreens.gd" id="1_tmki8"]
+[ext_resource type="FontFile" uid="uid://bhsapkumh7myh" path="res://Assets/fusion-pixel-12px-monospaced-kr-latin-400-normal.ttf" id="3_4x0fk"]
+[ext_resource type="Texture2D" uid="uid://cjs1stq7yiab1" path="res://Assets/UI/Win-Sheet.png" id="3_tmki8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hy44"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytr4m"]
+bg_color = Color(0.013469728, 0.33196738, 0.63192815, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l48gv"]
+bg_color = Color(0.25395477, 0.6641327, 0.5751776, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yblwc"]
+atlas = ExtResource("3_tmki8")
+region = Rect2(0, 0, 288, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4bre"]
+atlas = ExtResource("3_tmki8")
+region = Rect2(288, 0, 288, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x0fk"]
+atlas = ExtResource("3_tmki8")
+region = Rect2(576, 0, 288, 162)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrnbx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yblwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4bre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x0fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4bre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yblwc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Menu" type="Node2D" unique_id=1471323895]
+script = ExtResource("1_tmki8")
+
+[node name="Button" type="Button" parent="." unique_id=1550259643]
+offset_left = 462.0
+offset_top = 460.0
+offset_right = 702.0
+offset_bottom = 543.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4x0fk")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ytr4m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l48gv")
+text = "MENU"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=644998349]
+z_index = -2
+position = Vector2(577, 324)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_nrnbx")
+autoplay = "default"
+frame_progress = 0.63389295
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="." unique_id=1743650730]
+offset_left = 346.0
+offset_top = 352.0
+offset_right = 826.0
+offset_bottom = 417.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4x0fk")
+theme_override_font_sizes/font_size = 64
+text = "AND A KNOCKOUT!"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
