@@ -17,6 +17,7 @@ const HITSTUN_TIME = 0.25
 var is_hit = false
 var hitstun_timer = 0.0
 var HP = 3
+var died = false
 
 
 @export var blue_bullet_scene: PackedScene
@@ -43,6 +44,7 @@ var facing = 1
 
 
 func _physics_process(delta):
+	
 
 	if shoot_timer > 0:
 		shoot_timer -= delta
@@ -60,6 +62,9 @@ func _physics_process(delta):
 	if not is_on_floor() and not is_dashing:
 		velocity.y += GRAVITY * delta
 
+	if died:
+		return
+		
 	if is_dashing:
 
 		velocity = dash_direction * DASH_SPEED
@@ -284,7 +289,7 @@ func take_hit(source_position: Vector2):
 		die()
 
 func die():
-
+	died = true
 	print("Mophead has died!")
 	sprite.play("death")
 	await sprite.animation_finished

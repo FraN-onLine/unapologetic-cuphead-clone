@@ -12,6 +12,20 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytr4m"]
+bg_color = Color(0.013469728, 0.33196738, 0.63192815, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l48gv"]
+bg_color = Color(0.25395477, 0.6641327, 0.5751776, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [sub_resource type="Animation" id="Animation_mae5d"]
 length = 0.001
 tracks/0/type = "value"
@@ -104,6 +118,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_mae5d")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ytr4m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l48gv")
 text = "START"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1434277084]
@@ -115,6 +131,6 @@ z_index = -2
 position = Vector2(576, 329)
 sprite_frames = SubResource("SpriteFrames_nrnbx")
 autoplay = "default"
-frame_progress = 0.32159823
+frame_progress = 0.47934753
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
