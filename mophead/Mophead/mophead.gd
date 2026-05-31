@@ -294,4 +294,15 @@ func die():
 	sprite.play("death")
 	await sprite.animation_finished
 	
-	get_tree().change_scene_to_file("res://lose.tscn")
+	var boss = get_parent().get_node("SexyBucket")
+
+	match boss.current_phase:
+
+		boss.BossPhase.PHASE_1:
+			get_tree().change_scene_to_file("res://lose1.tscn")
+
+		boss.BossPhase.PHASE_2:
+			get_tree().change_scene_to_file("res://lose2.tscn")
+
+		boss.BossPhase.PHASE_3:
+			get_tree().change_scene_to_file("res://lose3.tscn")

@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://m3bs0pvagli4"]
+
+[ext_resource type="Script" uid="uid://dq81moye23t2p" path="res://endscreens.gd" id="1_18xjh"]
+[ext_resource type="FontFile" uid="uid://bhsapkumh7myh" path="res://Assets/fusion-pixel-12px-monospaced-kr-latin-400-normal.ttf" id="2_f8bvn"]
+[ext_resource type="Texture2D" uid="uid://df4vr0xr2ckm4" path="res://Assets/UI/deaTH-Sheet.png" id="3_2qdg8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hy44"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytr4m"]
+bg_color = Color(0.013469728, 0.33196738, 0.63192815, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l48gv"]
+bg_color = Color(0.25395477, 0.6641327, 0.5751776, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18xjh"]
+atlas = ExtResource("3_2qdg8")
+region = Rect2(864, 0, 288, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8bvn"]
+atlas = ExtResource("3_2qdg8")
+region = Rect2(1152, 0, 288, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qdg8"]
+atlas = ExtResource("3_2qdg8")
+region = Rect2(1440, 0, 288, 162)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrnbx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18xjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8bvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qdg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8bvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18xjh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Lose" type="Node2D" unique_id=1471323895]
+script = ExtResource("1_18xjh")
+
+[node name="Button" type="Button" parent="." unique_id=1550259643]
+offset_left = 463.0
+offset_top = 438.0
+offset_right = 703.0
+offset_bottom = 521.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f8bvn")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ytr4m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l48gv")
+text = "MENU"
+
+[node name="Button2" type="Button" parent="." unique_id=1090478547]
+offset_left = 463.0
+offset_top = 537.0
+offset_right = 703.0
+offset_bottom = 620.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f8bvn")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ytr4m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l48gv")
+text = "RETRY"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=644998349]
+z_index = -2
+position = Vector2(577, 324)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_nrnbx")
+autoplay = "default"
+frame_progress = 0.23689537
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="." unique_id=1743650730]
+offset_left = 203.0
+offset_top = 344.0
+offset_right = 955.0
+offset_bottom = 449.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f8bvn")
+theme_override_font_sizes/font_size = 32
+text = "IF YOU EVER GO BACK TO THE WATER FOUNTAIN,
+YOUR HANDLE WILL BE BROKEN!"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_retry_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://m3bs0pvagli4"]
+[gd_scene format=3 uid="uid://s6u2ldulicon"]
 
 [ext_resource type="Script" uid="uid://dq81moye23t2p" path="res://endscreens.gd" id="1_46blr"]
 [ext_resource type="Texture2D" uid="uid://df4vr0xr2ckm4" path="res://Assets/UI/deaTH-Sheet.png" id="3_46blr"]
@@ -95,7 +95,7 @@ position = Vector2(577, 324)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_nrnbx")
 autoplay = "default"
-frame_progress = 0.26329142
+frame_progress = 0.42262152
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="." unique_id=1743650730]
@@ -107,7 +107,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_s23sx")
 theme_override_font_sizes/font_size = 32
 text = "THE BUCKET BEATS THE MOP? 
-THAT'S A WEAK ARMED PUSSY"
+THAT'S A WEAK-ARMED PUSSY"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
