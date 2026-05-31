@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://n0ubyrkf8u1t" path="res://Assets/Mophead/Mophead Blue Bullets.png" id="8_kek77"]
 [ext_resource type="Texture2D" uid="uid://dcnpxmf3av7li" path="res://Assets/SexyBucket/Alleygater-Sheet.png" id="9_dg77c"]
 [ext_resource type="Texture2D" uid="uid://ey2as3gjxjbp" path="res://Assets/Map/Backitem-Sheet.png" id="14_w48qg"]
+[ext_resource type="Texture2D" uid="uid://by8fa3ecfvg2t" path="res://Assets/UI/go-Sheet.png" id="15_2cqfq"]
 [ext_resource type="AudioStream" uid="uid://bh1fwbdaeowaf" path="res://Assets/Audio/gregorquendel-bach-badinerie-bwv-1067-arranged-for-woodwinds-and-strings-191156.mp3" id="15_vivmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
@@ -431,6 +432,55 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rl1p"]
+atlas = ExtResource("15_2cqfq")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok6jj"]
+atlas = ExtResource("15_2cqfq")
+region = Rect2(300, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_facbu"]
+atlas = ExtResource("15_2cqfq")
+region = Rect2(600, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1qrp"]
+atlas = ExtResource("15_2cqfq")
+region = Rect2(900, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_come4"]
+atlas = ExtResource("15_2cqfq")
+region = Rect2(1200, 0, 300, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8e4i"]
+animations = [{
+"frames": [{
+"duration": 32.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rl1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok6jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_facbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1qrp")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_come4")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="Main" type="Node2D" unique_id=1979549985]
 script = ExtResource("1_h2yge")
 PinkPony = ExtResource("2_272bh")
@@ -522,7 +572,7 @@ text = "Press \"S\" to Swap"
 offset_left = 24.0
 offset_top = 439.0
 offset_right = 301.0
-offset_bottom = 552.01404
+offset_bottom = 552.015
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_7mycd")
 theme_override_font_sizes/font_size = 25
@@ -597,6 +647,14 @@ scale = Vector2(1, 1.1875)
 sprite_frames = SubResource("SpriteFrames_0rl1p")
 autoplay = "idle"
 frame = 13
+frame_progress = 1.0
+
+[node name="GO" type="AnimatedSprite2D" parent="." unique_id=2041046578]
+self_modulate = Color(1, 1, 1, 0.8352941)
+position = Vector2(186, 155)
+scale = Vector2(1, 1.0466666)
+sprite_frames = SubResource("SpriteFrames_h8e4i")
+frame = 6
 frame_progress = 1.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1477404829]

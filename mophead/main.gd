@@ -14,6 +14,7 @@ var intro_done = false
 func _ready() -> void:
 	music.stream = preload("res://Assets/Audio/intro.mp3")
 	music.play()
+	$GO.play("default")
 	await music.finished
 	intro_done = true
 	music.stream = preload("res://Assets/Audio/gregorquendel-bach-badinerie-bwv-1067-arranged-for-woodwinds-and-strings-191156.mp3")
