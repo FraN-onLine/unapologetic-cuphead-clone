@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://gnc61nrdo18v"
+path="res://.godot/imported/a great day.mp3-30ea143319edc762f18001db81f47f4e.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/a great day.mp3"
+dest_files=["res://.godot/imported/a great day.mp3-30ea143319edc762f18001db81f47f4e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

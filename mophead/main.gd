@@ -8,9 +8,14 @@ var dead = false
 var hazardscd = 0
 var instructions_on = true
 var timer_ins = 0
-func _ready() -> void:
-	pass # Replace with function body.
 
+@onready var music = $AudioStreamPlayer2D
+func _ready() -> void:
+	music.stream = preload("res://Assets/Audio/intro.mp3")
+	music.play()
+	await music.finished
+	music.stream = preload("res://Assets/Audio/gregorquendel-bach-badinerie-bwv-1067-arranged-for-woodwinds-and-strings-191156.mp3")
+	music.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

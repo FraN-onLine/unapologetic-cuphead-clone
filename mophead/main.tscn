@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://n0ubyrkf8u1t" path="res://Assets/Mophead/Mophead Blue Bullets.png" id="8_kek77"]
 [ext_resource type="Texture2D" uid="uid://dcnpxmf3av7li" path="res://Assets/SexyBucket/Alleygater-Sheet.png" id="9_dg77c"]
 [ext_resource type="Texture2D" uid="uid://ey2as3gjxjbp" path="res://Assets/Map/Backitem-Sheet.png" id="14_w48qg"]
+[ext_resource type="AudioStream" uid="uid://bh1fwbdaeowaf" path="res://Assets/Audio/gregorquendel-bach-badinerie-bwv-1067-arranged-for-woodwinds-and-strings-191156.mp3" id="15_vivmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(1146.5, 134)
@@ -521,7 +522,7 @@ text = "Press \"S\" to Swap"
 offset_left = 24.0
 offset_top = 439.0
 offset_right = 301.0
-offset_bottom = 552.0029
+offset_bottom = 552.0127
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_7mycd")
 theme_override_font_sizes/font_size = 25
@@ -597,6 +598,9 @@ sprite_frames = SubResource("SpriteFrames_0rl1p")
 autoplay = "idle"
 frame = 13
 frame_progress = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1477404829]
+stream = ExtResource("15_vivmo")
 
 [connection signal="body_entered" from="MopArea" to="." method="_on_mop_area_body_entered"]
 [connection signal="body_entered" from="Glove Area" to="." method="_on_glove_area_body_entered"]
