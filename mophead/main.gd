@@ -35,10 +35,10 @@ func _process(delta: float) -> void:
 			alleygator()	
 		elif $SexyBucket.hp < 300:
 			#random between alligator or mop
-			if randi() % 2 == 0:
+			if randi() % 3 == 0:
 				alleygator()
 			else:
-				drop_mop()
+				glove()
 
 func spawn_pony():
 	print("spawn pony")
@@ -113,10 +113,26 @@ func alleygator():
 	await wait_for_frame($Alleygator, 10)
 	$AlleygatorArea.monitoring = false
 	
+func glove():
+	$Glove.play("default")
+	await wait_for_frame($Glove, 7)
+	$"Glove Area".monitoring = true
+	await wait_for_frame($Glove, 9)
+	$"Glove Area".monitoring = false
+	await $Glove.animation_finished
+	$Glove.play("idle")
+	
 func _on_mop_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 
 		body.take_hit($MopArea.global_position)
+
+		print("Mop hit Mophead")
+		
+func _on_glove_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+
+		body.take_hit($"Glove Area".global_position)
 
 		print("Mop hit Mophead")
 

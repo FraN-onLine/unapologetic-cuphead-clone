@@ -104,16 +104,16 @@ script = ExtResource("1_mae5d")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=312479525]
 offset_left = 356.0
-offset_top = -26.0
+offset_top = -5.5864086
 offset_right = 787.0
-offset_bottom = 405.0
+offset_bottom = 425.4136
 texture = ExtResource("1_ouk20")
 
 [node name="Button" type="Button" parent="." unique_id=1550259643]
-offset_left = 428.0
-offset_top = 303.0
-offset_right = 739.0
-offset_bottom = 406.0
+offset_left = 431.0
+offset_top = 358.0
+offset_right = 742.0
+offset_bottom = 461.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_mae5d")
 theme_override_font_sizes/font_size = 32
@@ -131,7 +131,7 @@ z_index = -2
 position = Vector2(576, 329)
 sprite_frames = SubResource("SpriteFrames_nrnbx")
 autoplay = "default"
-frame_progress = 0.3584327
+frame_progress = 0.568396
 metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
