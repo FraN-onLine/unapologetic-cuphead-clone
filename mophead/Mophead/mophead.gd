@@ -18,7 +18,15 @@ var is_hit = false
 var hitstun_timer = 0.0
 var HP = 3
 var died = false
-
+@onready var music = $AudioStreamPlayer2D
+var bluebullet_sounds = [
+	preload("res://Assets/Audio/shoot1mp3.mp3"),
+	preload("res://Assets/Audio/shoot2.mp3")
+]
+var pinkbullet_sounds = [
+	preload("res://Assets/Audio/shoot3.mp3"),
+	preload("res://Assets/Audio/shoot4.mp3")
+]
 
 @export var blue_bullet_scene: PackedScene
 @export var pink_bullet_scene: PackedScene
@@ -128,6 +136,8 @@ func fire_weapon():
 
 
 func fire_blue():
+	
+	play_shot_sound()
 
 	var bullet = blue_bullet_scene.instantiate()
 
@@ -150,6 +160,8 @@ func fire_blue():
 
 
 func fire_pink():
+	
+	play_shot_sound()
 
 	var aim = get_aim_direction()
 
@@ -306,3 +318,15 @@ func die():
 
 		boss.BossPhase.PHASE_3:
 			get_tree().change_scene_to_file("res://lose3.tscn")
+
+func play_shot_sound():
+
+	match current_weapon:
+
+		WeaponType.BLUE:
+			music.stream = bluebullet_sounds.pick_random()
+
+		WeaponType.PINK:
+			music.stream = pinkbullet_sounds.pick_random()
+
+	music.play()

@@ -8,14 +8,19 @@ var dead = false
 var hazardscd = 0
 var instructions_on = true
 var timer_ins = 0
+var intro_done = false
 
 @onready var music = $AudioStreamPlayer2D
 func _ready() -> void:
 	music.stream = preload("res://Assets/Audio/intro.mp3")
 	music.play()
 	await music.finished
+	intro_done = true
 	music.stream = preload("res://Assets/Audio/gregorquendel-bach-badinerie-bwv-1067-arranged-for-woodwinds-and-strings-191156.mp3")
 	music.play()
+	$SexyBucket.take_no_damage = false
+	$SexyBucket.update_phase()
+	$SexyBucket.start_attack_cycle()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

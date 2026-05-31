@@ -28,12 +28,9 @@ func _ready():
 	take_no_damage = true
 	$SBSprite.play("enter_phase1")
 	await $SBSprite.animation_finished
-	take_no_damage = false
 	$SBSprite.play("idle_phase1")
-	await get_tree().create_timer(0.5).timeout
-	update_phase()
 
-	start_attack_cycle()
+	
 
 
 func take_damage(amount: int):
